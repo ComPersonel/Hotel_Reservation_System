@@ -1,0 +1,1 @@
+floor;number;reserved;type;tier;coupon
