@@ -81,5 +81,31 @@ void print_room(room_data room) {
 	cout << "Huone numero : " << room.number << endl;
 	cout << "Huone malli : " << type_desc(room) << endl;
 	cout << "Huone taso : " << tier_desc(room) << endl;
+}
 
+bool any_free_rooms(vector<vector<room_data>>& rooms_array) {
+
+	vector<int> hotel_size = define_hotel_size();
+
+	for (int i = 0; i <= hotel_size[0] - 1; i++) {
+		for (int j = 0; j <= hotel_size[1] - 1; j++) {
+			if (rooms_array[i][j].reserved == false) {
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+int output_room_number(int floor, int number) {
+	return ((floor + 1) * 100) + number;
+}
+
+vector<int> index_from_number(int number) {
+
+	int floor = number / 100 - 1;
+	int index = number % 100 - 1;
+
+
+	return { floor, index };
 }

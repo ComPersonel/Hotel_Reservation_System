@@ -126,6 +126,7 @@
     <ClInclude Include="hotel_system.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="commands.cpp" />
     <ClCompile Include="file_manager.cpp" />
     <ClCompile Include="menu.cpp" />
     <ClCompile Include="tasks.cpp" />

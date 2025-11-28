@@ -12,33 +12,41 @@
 
 using namespace std;
 
+// Tarkista onko huone data olemassa ---------------------------------------------------
+void check_files() {
+
+}
+
+
 // Lataa huoneet käytettäviksi ---------------------------------------------------------
-room_data* load_room_data(room_data rooms_array[]) {
+void load_room_data(vector<vector<room_data>>& rooms_array) {
 
 	ifstream room_data("room_data.txt");
 
 	string line;
+	vector<int> hotel_size = define_hotel_size();
 
-	for (int i = 0; i < 10 && getline(room_data, line); i++) {
-		stringstream ss(line);
-		string floor, number, reserved, type, tier, coupon;
+	for (int i = 0; i <= hotel_size[0] - 1; i++) {
+		for (int j = 0; j <= hotel_size[1] - 1 && getline(room_data, line); j++) {
+			stringstream ss(line);
+			string floor, number, reserved, type, tier, coupon;
 
-		getline(ss, floor, ';');
-		getline(ss, number, ';');
-		getline(ss, reserved, ';');
-		getline(ss, type, ';');
-		getline(ss, tier, ';');
-		getline(ss, coupon, ';');
+			getline(ss, floor, ';');
+			getline(ss, number, ';');
+			getline(ss, reserved, ';');
+			getline(ss, type, ';');
+			getline(ss, tier, ';');
+			getline(ss, coupon, ';');
 
-		rooms_array[i].floor = stoi(number);
-		rooms_array[i].number = stoi(number);
-		rooms_array[i].reserved = stoi(reserved);
-		rooms_array[i].type = type;
-		rooms_array[i].tier = tier;
-		rooms_array[i].coupon = stoi(coupon);
+			rooms_array[i][j].floor = stoi(number);
+			rooms_array[i][j].number = stoi(number);
+			rooms_array[i][j].reserved = stoi(reserved);
+			rooms_array[i][j].type = type;
+			rooms_array[i][j].tier = tier;
+			rooms_array[i][j].coupon = stoi(coupon);
+		}
 	}
 
-	return rooms_array;
 }
 
 // Tallentaa uudet informaatiot tiedostoon ---------------------------------------------------------
@@ -93,7 +101,16 @@ void generate_room_data(vector<vector<room_data>>& rooms_array) {
 				rooms_array[i][j].tier = "basic";
 			}
 
-			rooms_array[i][j].coupon = 0;
+			random = random_num(1, 10);
+
+			if (random == 10) {
+				rooms_array[i][j].coupon = 20;
+			}
+			else if (random > 5) {
+				rooms_array[i][j].coupon = 10;
+			}else{
+				rooms_array[i][j].coupon = 0;
+			}
 
 		}
 	}
