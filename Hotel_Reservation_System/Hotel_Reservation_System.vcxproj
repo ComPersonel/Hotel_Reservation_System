@@ -133,6 +133,7 @@
   <ItemGroup>
     <Text Include="hotel_information_template.txt" />
     <Text Include="reservation_data_template.txt" />
+    <Text Include="room_data.txt" />
     <Text Include="room_data_template.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

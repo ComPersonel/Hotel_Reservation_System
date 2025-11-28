@@ -20,11 +20,11 @@ int main() {
 
 	vector<vector<room_data>> rooms_array(hotel[0], vector<room_data>(hotel[1]));
 
+	generate_room_data(rooms_array);
+
 	do { // Pyydä tehtävä Numeroa
 
 		system("cls");
-
-		generate_room_data();
 
 		cout << "--------------------------" << endl;
 		cout << "Tehtävät : " << "\t\t|" << endl;
@@ -57,6 +57,8 @@ int main() {
 		}
 
 	} while (command != 0);
+
+	save_room_data(rooms_array);
 
 	return 0;
 }

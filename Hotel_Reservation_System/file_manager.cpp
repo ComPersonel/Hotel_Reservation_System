@@ -42,37 +42,58 @@ room_data* load_room_data(room_data rooms_array[]) {
 }
 
 // Tallentaa uudet informaatiot tiedostoon ---------------------------------------------------------
-void save_room_data(room_data rooms_array[]) {
+void save_room_data(vector<vector<room_data>>& rooms_array) {
 
 	ofstream room_data("room_data.txt", ofstream::out | ofstream::trunc);
 
-	for (int i = 0; i < 10; i++) {
-		room_data << rooms_array[i].floor << ";";
-		room_data << rooms_array[i].number << ";";
-		room_data << rooms_array[i].reserved << ";";
-		room_data << rooms_array[i].type << ";";
-		room_data << rooms_array[i].tier << ";";
-		room_data << rooms_array[i].coupon << ";" << endl;
+	vector<int> hotel_size = define_hotel_size();
+
+	for (int i = 0; i <= hotel_size[0] - 1; i++) {
+		for (int j = 0; j <= hotel_size[1] - 1; j++) {
+			room_data << rooms_array[i][j].floor << ";";
+			room_data << rooms_array[i][j].number << ";";
+			room_data << rooms_array[i][j].reserved << ";";
+			room_data << rooms_array[i][j].type << ";";
+			room_data << rooms_array[i][j].tier << ";";
+			room_data << rooms_array[i][j].coupon << ";" << endl;
+
+		}
 	}
 
 }
 
 // Generoi pohjatiedoston huoneita varten ---------------------------------------------------------
-void generate_room_data() {
+void generate_room_data(vector<vector<room_data>>& rooms_array) {
 
+	ofstream room_data("room_data.txt", ofstream::out | ofstream::trunc);
 	int random;
 
 	vector<int> hotel_size = define_hotel_size();
 
-	for (int i = 0; i <= hotel_size[0]; i++) {
+	for (int i = 0; i <= hotel_size[0] - 1; i++) {
 		for (int j = 0; j <= hotel_size[1] - 1; j++) {
-			cout << "i = " << i << " : j = " << j << endl;
-			room_data << rooms_array[i].floor << ";";
-			room_data << rooms_array[i].number << ";";
-			room_data << rooms_array[i].reserved << ";";
-			room_data << rooms_array[i].type << ";";
-			room_data << rooms_array[i].tier << ";";
-			room_data << rooms_array[i].coupon << ";" << endl;
+			rooms_array[i][j].floor  = i;
+			rooms_array[i][j].number = j + 1;
+			rooms_array[i][j].reserved = false;
+
+			if (j > hotel_size[1] / 2) {
+				rooms_array[i][j].type = "double";
+			}
+			else {
+				rooms_array[i][j].type = "single";
+			}
+
+			if (j == hotel_size[1] / 2 || j == hotel_size[1] - 1) {
+				rooms_array[i][j].tier = "deluxe";
+			}
+			else if ((j > hotel_size[1] / 4 && j < hotel_size[1] / 2) || j > hotel_size[1] / 4 + hotel_size[1] / 2) {
+				rooms_array[i][j].tier = "premium";
+			}
+			else {
+				rooms_array[i][j].tier = "basic";
+			}
+
+			rooms_array[i][j].coupon = 0;
 
 		}
 	}

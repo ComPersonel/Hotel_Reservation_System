@@ -11,12 +11,12 @@
 using namespace std;
 
 struct room_data {
-	int floor; // Huoneen kerros
-	int number; // Huone numero
-	bool reserved; // Varattu?
-	std::string type; // Single, Double
-	std::string tier; // Basic, Premium, Deluxe
-	int coupon; // Kupongin alennus
+	int floor = 0; // Huoneen kerros
+	int number = 0; // Huone numero
+	bool reserved = false; // Varattu?
+	std::string type = "single"; // Single, Double
+	std::string tier = "basic"; // Basic, Premium, Deluxe
+	int coupon = 0; // Kupongin alennus
 };
 
 struct reservation_data {
@@ -27,7 +27,8 @@ struct reservation_data {
 	int stay; // Keston pituus
 };
 
-void generate_room_data();
+void save_room_data(vector<vector<room_data>>&);
+void generate_room_data(vector<vector<room_data>>&);
 vector<int> define_hotel_size();
 
 int random_num(int, int);
