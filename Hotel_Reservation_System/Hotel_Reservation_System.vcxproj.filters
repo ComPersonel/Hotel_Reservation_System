@@ -46,5 +46,8 @@
     <Text Include="room_data.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="reservation_data.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

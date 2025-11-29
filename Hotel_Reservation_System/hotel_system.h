@@ -33,9 +33,11 @@ struct reservation_data {
 // File Manager funktiot
 void check_files();
 void load_room_data(vector<vector<room_data>>&);
-void save_room_data(vector<vector<room_data>>&);
+void save_room_data(vector<vector<room_data>>);
 void generate_room_data(vector<vector<room_data>>&);
 vector<int> define_hotel_size();
+void load_reservation_data(vector<reservation_data>&);
+void save_reservation_data(vector<reservation_data>);
 
 // Tasks funktiot
 int random_num(int, int);
@@ -47,15 +49,15 @@ std::string type_desc(room_data);
 std::string tier_desc(room_data);
 void print_room(room_data);
 bool any_free_rooms(vector<vector<room_data>>);
-bool free_rooms_floor(vector<vector<room_data>>, int);
-bool free_rooms_type(vector<vector<room_data>>, int);
-bool free_rooms_type_floor(vector<vector<room_data>>, int, int);
+bool free_rooms(vector<vector<room_data>>, int, int, int);
+//bool free_rooms_floor(vector<vector<room_data>>, int);
+//bool free_rooms_type(vector<vector<room_data>>, int);
+//bool free_rooms_type_floor(vector<vector<room_data>>, int, int);
 int output_room_number(int, int);
 vector<int> index_from_number(int);
 void create_reservation(vector<reservation_data>, int, int, std::string, int);
 int create_reservation_number(vector<reservation_data>);
-vector<room_data> collect_rooms(vector<vector<room_data>>, int);
-vector<room_data> collect_rooms_type_floor(vector<vector<room_data>>, int, int);
+vector<room_data> collect_rooms(vector<vector<room_data>>, int, int, int);
 vector<int> random_from_list(vector<room_data>);
 
 // Komento funktiot

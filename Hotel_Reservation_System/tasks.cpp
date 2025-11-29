@@ -78,7 +78,7 @@ string tier_desc(room_data room) {
 }
 
 void print_room(room_data room) {
-	cout << "Huone numero : " << room.number << endl;
+	cout << "Huone numero : " << output_room_number(room.floor, room.number) << endl;
 	cout << "Huone malli : " << type_desc(room) << endl;
 	cout << "Huone taso : " << tier_desc(room) << endl;
 }
@@ -87,16 +87,49 @@ bool any_free_rooms(vector<vector<room_data>> rooms_array) {
 
 	vector<int> hotel_size = define_hotel_size();
 
+	bool return_value = true;
+
 	for (int i = 0; i <= hotel_size[0] - 1; i++) {
 		for (int j = 0; j <= hotel_size[1] - 1; j++) {
-			if (rooms_array[i][j].reserved == false) {
+			if (rooms_array[i][j].reserved == true) {
+				return_value = false;
+			}
+		}
+	}
+	return return_value;
+}
+
+bool free_rooms(vector<vector<room_data>> rooms_array, int floor, int type, int tier) {
+
+	string room_type = "single";
+	string room_tier = "basic";
+	vector<int> hotel_size = define_hotel_size();
+	vector<room_data> return_array;
+
+	if (type == 2) {
+		room_type = "double";
+	}
+
+	if (tier == 2) {
+		room_tier = "premium";
+	}
+	else if (tier == 3) {
+		room_tier = "deluxe";
+	}
+
+	for (int i = 0; i <= hotel_size[0] - 1; i++) {
+		for (int j = 0; j <= hotel_size[1] - 1; j++) {
+			if ((rooms_array[i][j].type == room_type || type == -1) && (rooms_array[i][j].tier == room_tier || tier == -1) && (rooms_array[i][j].floor == floor - 1 || floor == -1)) {
 				return true;
 			}
 		}
 	}
+
 	return false;
+
 }
 
+/*
 bool free_rooms_floor(vector<vector<room_data>> rooms_array, int floor) {
 
 	vector<int> hotel_size = define_hotel_size();
@@ -145,6 +178,8 @@ bool free_rooms_type_floor(vector<vector<room_data>> rooms_array, int type, int 
 	return false;
 }
 
+*/
+
 int output_room_number(int floor, int number) {
 	return ((floor + 1) * 100) + number;
 }
@@ -152,7 +187,7 @@ int output_room_number(int floor, int number) {
 vector<int> index_from_number(int number) {
 
 	int floor = number / 100 - 1;
-	int index = number % 100;
+	int index = number % 100 - 1;
 
 	return { floor, index };
 }
@@ -191,56 +226,44 @@ int create_reservation_number(vector<reservation_data> reservations_array) {
 	return number;
 }
 
-vector<room_data> collect_rooms(vector<vector<room_data>> rooms_array, int type) {
+vector<room_data> collect_rooms(vector<vector<room_data>> rooms_array, int floor, int type, int tier) {
 	string room_type = "single";
+	string room_tier = "basic";
 	vector<int> hotel_size = define_hotel_size();
 	vector<room_data> return_array;
 
 	if (type == 2) {
 		room_type = "double";
 	}
-	else if (type == -1) {
-		room_type = "clear";
+
+	if (tier == 2) {
+		room_tier = "premium";
+	}
+	else if (tier == 3) {
+		room_tier = "deluxe";
 	}
 
 	for (int i = 0; i <= hotel_size[0] - 1; i++) {
 		for (int j = 0; j <= hotel_size[1] - 1; j++) {
-			if (rooms_array[j][i].type == room_type || "clear" == room_type) {
-				return_array.push_back(rooms_array[j][i]);
+			if ((rooms_array[i][j].type == room_type || type == -1) && (rooms_array[i][j].tier == room_tier || tier == -1) && (rooms_array[i][j].floor == floor - 1 || floor == -1)) {
+				return_array.push_back(rooms_array[i][j]);
 			}
 		}
 	}
-	return return_array;
-}
 
-
-vector<room_data> collect_rooms_type_floor(vector<vector<room_data>> rooms_array, int type, int floor) {
-	string room_type = "single";
-	vector<int> hotel_size = define_hotel_size();
-	vector<room_data> return_array;
-
-	if (type == 2) {
-		room_type = "double";
-	}
-
-	for (int i = 0; i <= hotel_size[1] - 1; i++) {
-		if (rooms_array[floor][i].type == room_type) {
-			return_array.push_back(rooms_array[floor][i]);
-		}
-	}
 	return return_array;
 }
 
 vector<int> random_from_list(vector<room_data> room_list) {
-	int random = -1;
-	do {
-		int random = random_num(0, room_list.size() - 1);
 
+	int random = -1;
+
+	do {
+		random = random_num(0, room_list.size() - 1);
 		if (room_list[random].reserved == true) {
 			random = -1;
 		}
 
 	} while (random == -1);
-
-	return { room_list[random].floor, room_list[random].number };
+	return { room_list[random].floor, room_list[random].number - 1};
 }

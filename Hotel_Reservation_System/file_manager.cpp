@@ -50,7 +50,7 @@ void load_room_data(vector<vector<room_data>>& rooms_array) {
 }
 
 // Tallentaa uudet informaatiot tiedostoon ---------------------------------------------------------
-void save_room_data(vector<vector<room_data>>& rooms_array) {
+void save_room_data(vector<vector<room_data>> rooms_array) {
 
 	ofstream room_data("room_data.txt", ofstream::out | ofstream::trunc);
 
@@ -119,4 +119,46 @@ void generate_room_data(vector<vector<room_data>>& rooms_array) {
 
 vector<int> define_hotel_size() {
 	return {3, 50};
+}
+
+
+// Lataa Varaukset ---------------------------------------------------------
+void load_reservation_data(vector<reservation_data>& reservations_array) {
+
+	ifstream reservation_data("reservation_data.txt");
+
+	string line;
+
+	while (getline(reservation_data, line)) {
+		stringstream ss(line);
+		string reservation, floor, number, name, stay;
+
+		if (line.length() != 0) {
+			getline(ss, reservation, ';');
+			getline(ss, floor, ';');
+			getline(ss, number, ';');
+			getline(ss, name, ';');
+			getline(ss, stay, ';');
+
+			reservations_array.push_back({ stoi(reservation), stoi(floor), stoi(number), name, stoi(stay) });
+
+		}
+
+	}
+
+}
+
+// Tallentaa uudet informaatiot tiedostoon ---------------------------------------------------------
+void save_reservation_data(vector<reservation_data> reservations_array) {
+
+	ofstream reservation_data("reservation_data.txt", ofstream::out | ofstream::trunc);
+
+	for (int i = 0; i <= reservations_array.size() - 1; i++) {
+		reservation_data << reservations_array[i].reservation << ";";
+		reservation_data << reservations_array[i].room_floor << ";";
+		reservation_data << reservations_array[i].room_number << ";";
+		reservation_data << reservations_array[i].name << ";";
+		reservation_data << reservations_array[i].stay << ";";
+	}
+
 }

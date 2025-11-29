@@ -22,6 +22,7 @@ int main() {
 	vector<reservation_data> reservations_array;
 
 	load_room_data(rooms_array);
+	load_reservation_data(reservations_array);
 
 	do { // Pyydä tehtävä Numeroa
 		system("cls");
@@ -59,6 +60,10 @@ int main() {
 	} while (command != 0);
 
 	save_room_data(rooms_array);
+
+	if (!reservations_array.empty()) {
+		save_reservation_data(reservations_array);
+	}
 
 	return 0;
 }
