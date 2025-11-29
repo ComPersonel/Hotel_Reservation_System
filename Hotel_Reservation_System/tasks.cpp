@@ -104,8 +104,41 @@ int output_room_number(int floor, int number) {
 vector<int> index_from_number(int number) {
 
 	int floor = number / 100 - 1;
-	int index = number % 100 - 1;
-
+	int index = number % 100;
 
 	return { floor, index };
+}
+
+void create_reservation(vector<reservation_data>& reservations_array, int floor, int number, string name, int stay) {
+
+	reservation_data new_reservation;
+
+	new_reservation.reservation = create_reservation_number(reservations_array);
+	new_reservation.room_floor = floor;
+	new_reservation.room_number = floor;
+	new_reservation.name = name;
+	new_reservation.stay = stay;
+
+	reservations_array.push_back(new_reservation);
+}
+
+int create_reservation_number(vector<reservation_data> reservations_array) {
+	int number = -1;
+	int length = reservations_array.size();
+
+	do {
+
+		number = random_num(10000, 99999);
+
+		if (length > 0) {
+			for (int i = 0; i <= length - 1; i++) {
+				if (reservations_array[i].reservation == number) {
+					number = -1;
+				}
+			}
+		}
+
+	} while (number == -1);
+
+	return number;
 }

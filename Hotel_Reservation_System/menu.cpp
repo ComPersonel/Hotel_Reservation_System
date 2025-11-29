@@ -19,11 +19,11 @@ int main() {
 	int command;
 
 	vector<vector<room_data>> rooms_array(hotel[0], vector<room_data>(hotel[1]));
+	vector<reservation_data> reservations_array;
 
 	load_room_data(rooms_array);
 
 	do { // Pyydä tehtävä Numeroa
-
 		system("cls");
 
 		cout << "--------------------------" << endl;

@@ -47,3 +47,7 @@ std::string type_desc(room_data);
 std::string tier_desc(room_data);
 void print_room(room_data);
 bool any_free_rooms(vector<vector<room_data>>&);
+int output_room_number(int, int);
+vector<int> index_from_number(int);
+void create_reservation(vector<reservation_data>&, int, int, std::string, int);
+int create_reservation_number(vector<reservation_data>);
