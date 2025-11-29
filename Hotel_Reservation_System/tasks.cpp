@@ -83,7 +83,7 @@ void print_room(room_data room) {
 	cout << "Huone taso : " << tier_desc(room) << endl;
 }
 
-bool any_free_rooms(vector<vector<room_data>>& rooms_array) {
+bool any_free_rooms(vector<vector<room_data>> rooms_array) {
 
 	vector<int> hotel_size = define_hotel_size();
 
@@ -92,6 +92,54 @@ bool any_free_rooms(vector<vector<room_data>>& rooms_array) {
 			if (rooms_array[i][j].reserved == false) {
 				return true;
 			}
+		}
+	}
+	return false;
+}
+
+bool free_rooms_floor(vector<vector<room_data>> rooms_array, int floor) {
+
+	vector<int> hotel_size = define_hotel_size();
+
+	for (int i = 0; i <= hotel_size[1] - 1; i++) {
+		if (rooms_array[floor][i].reserved == false) {
+			return true;
+		}
+	}
+	return false;
+}
+
+bool free_rooms_type(vector<vector<room_data>> rooms_array, int type) {
+
+	string room_type = "single";
+	vector<int> hotel_size = define_hotel_size();
+
+	if (type == 2) {
+		room_type = "double";
+	}
+
+	for (int i = 0; i <= hotel_size[0] - 1; i++) {
+		for (int j = 0; j <= hotel_size[1] - 1; j++) {
+			if (rooms_array[j][i].type == room_type) {
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+bool free_rooms_type_floor(vector<vector<room_data>> rooms_array, int type, int floor) {
+
+	string room_type = "single";
+	vector<int> hotel_size = define_hotel_size();
+
+	if (type == 2) {
+		room_type = "double";
+	}
+
+	for (int i = 0; i <= hotel_size[1] - 1; i++) {
+		if (rooms_array[floor][i].type == room_type) {
+			return true;
 		}
 	}
 	return false;
@@ -109,7 +157,7 @@ vector<int> index_from_number(int number) {
 	return { floor, index };
 }
 
-void create_reservation(vector<reservation_data>& reservations_array, int floor, int number, string name, int stay) {
+void create_reservation(vector<reservation_data> reservations_array, int floor, int number, string name, int stay) {
 
 	reservation_data new_reservation;
 
@@ -141,4 +189,58 @@ int create_reservation_number(vector<reservation_data> reservations_array) {
 	} while (number == -1);
 
 	return number;
+}
+
+vector<room_data> collect_rooms(vector<vector<room_data>> rooms_array, int type) {
+	string room_type = "single";
+	vector<int> hotel_size = define_hotel_size();
+	vector<room_data> return_array;
+
+	if (type == 2) {
+		room_type = "double";
+	}
+	else if (type == -1) {
+		room_type = "clear";
+	}
+
+	for (int i = 0; i <= hotel_size[0] - 1; i++) {
+		for (int j = 0; j <= hotel_size[1] - 1; j++) {
+			if (rooms_array[j][i].type == room_type || "clear" == room_type) {
+				return_array.push_back(rooms_array[j][i]);
+			}
+		}
+	}
+	return return_array;
+}
+
+
+vector<room_data> collect_rooms_type_floor(vector<vector<room_data>> rooms_array, int type, int floor) {
+	string room_type = "single";
+	vector<int> hotel_size = define_hotel_size();
+	vector<room_data> return_array;
+
+	if (type == 2) {
+		room_type = "double";
+	}
+
+	for (int i = 0; i <= hotel_size[1] - 1; i++) {
+		if (rooms_array[floor][i].type == room_type) {
+			return_array.push_back(rooms_array[floor][i]);
+		}
+	}
+	return return_array;
+}
+
+vector<int> random_from_list(vector<room_data> room_list) {
+	int random = -1;
+	do {
+		int random = random_num(0, room_list.size() - 1);
+
+		if (room_list[random].reserved == true) {
+			random = -1;
+		}
+
+	} while (random == -1);
+
+	return { room_list[random].floor, room_list[random].number };
 }

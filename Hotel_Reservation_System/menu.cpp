@@ -6,7 +6,7 @@
 
 using namespace std;
 
-void dev_menu();
+void dev_menu(vector<vector<room_data>>&);
 
 // Valikko ---------------------------------------------------------
 int main() {
@@ -44,14 +44,14 @@ int main() {
 		}
 
 		switch (command) {
-		case 1: cout << "1";  break;
+		case 1: varaa_huone(rooms_array, reservations_array);  break;
 		case 2: cout << "2";  break;
 		case 3: cout << "3";  break;
 		case 4: cout << "4";  break;
 
 		case 0: cout << "Suljetaan Ohjelma";  break;
 
-		case 420: dev_menu();  break;
+		case 420: dev_menu(rooms_array);  break;
 
 		default: cout << "Virhetilanne";
 		}
@@ -65,7 +65,7 @@ int main() {
 
 
 // Dev Valikko ---------------------------------------------------------
-void dev_menu() {
+void dev_menu(vector<vector<room_data>>& rooms_array) {
 
 	// Alusta muuttuujat
 	int command;
@@ -89,7 +89,7 @@ void dev_menu() {
 		}
 
 		switch (command) {
-		case 1: cout << "1";  break;
+		case 1: generate_room_data(rooms_array);  break;
 		case 2: cout << "2";  break;
 
 		case 0: cout << "Suljetaan Ohjelma";  break;

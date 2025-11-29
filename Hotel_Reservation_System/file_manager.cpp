@@ -38,7 +38,7 @@ void load_room_data(vector<vector<room_data>>& rooms_array) {
 			getline(ss, tier, ';');
 			getline(ss, coupon, ';');
 
-			rooms_array[i][j].floor = stoi(number);
+			rooms_array[i][j].floor = stoi(floor);
 			rooms_array[i][j].number = stoi(number);
 			rooms_array[i][j].reserved = stoi(reserved);
 			rooms_array[i][j].type = type;
@@ -84,14 +84,14 @@ void generate_room_data(vector<vector<room_data>>& rooms_array) {
 			rooms_array[i][j].number = j + 1;
 			rooms_array[i][j].reserved = false;
 
-			if (j > hotel_size[1] / 2) {
+			if (j >= hotel_size[1] / 2) {
 				rooms_array[i][j].type = "double";
 			}
 			else {
 				rooms_array[i][j].type = "single";
 			}
 
-			if (j == hotel_size[1] / 2 || j == hotel_size[1] - 1) {
+			if (j == hotel_size[1] / 2 - 1 || j == hotel_size[1] - 1) {
 				rooms_array[i][j].tier = "deluxe";
 			}
 			else if ((j > hotel_size[1] / 4 && j < hotel_size[1] / 2) || j > hotel_size[1] / 4 + hotel_size[1] / 2) {
@@ -118,5 +118,5 @@ void generate_room_data(vector<vector<room_data>>& rooms_array) {
 }
 
 vector<int> define_hotel_size() {
-	return {2, 50};
+	return {3, 50};
 }

@@ -46,8 +46,17 @@ std::string input_name();
 std::string type_desc(room_data);
 std::string tier_desc(room_data);
 void print_room(room_data);
-bool any_free_rooms(vector<vector<room_data>>&);
+bool any_free_rooms(vector<vector<room_data>>);
+bool free_rooms_floor(vector<vector<room_data>>, int);
+bool free_rooms_type(vector<vector<room_data>>, int);
+bool free_rooms_type_floor(vector<vector<room_data>>, int, int);
 int output_room_number(int, int);
 vector<int> index_from_number(int);
-void create_reservation(vector<reservation_data>&, int, int, std::string, int);
+void create_reservation(vector<reservation_data>, int, int, std::string, int);
 int create_reservation_number(vector<reservation_data>);
+vector<room_data> collect_rooms(vector<vector<room_data>>, int);
+vector<room_data> collect_rooms_type_floor(vector<vector<room_data>>, int, int);
+vector<int> random_from_list(vector<room_data>);
+
+// Komento funktiot
+void varaa_huone(vector<vector<room_data>>&, vector<reservation_data>&);
