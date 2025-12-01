@@ -11,7 +11,7 @@ void dev_menu(vector<vector<room_data>>&);
 // Valikko ---------------------------------------------------------
 int main() {
 	srand(time(0)); // Generoi random siemen
-
+	cout << fixed << setprecision(2);
 	setlocale(LC_ALL, "FI_fi"); // Aseta Ääkköset oikein näkymiin
 
 	// Alusta muuttuujat
@@ -47,8 +47,9 @@ int main() {
 		switch (command) {
 		case 1: varaa_huone(rooms_array, reservations_array);  break;
 		case 2: tulosta_varaus(rooms_array, reservations_array);  break;
-		case 3: cout << "3";  break;
+		case 3: etsi_varaus(rooms_array, reservations_array);  break;
 		case 4: cout << "4";  break;
+		case 5: tulosta_kaikki_varaukset(rooms_array, reservations_array);  break;
 
 		case 0: cout << "Suljetaan Ohjelma";  break;
 

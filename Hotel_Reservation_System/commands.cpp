@@ -10,6 +10,8 @@ void varaa_huone(vector<vector<room_data>>& rooms_array, vector<reservation_data
 
 	system("cls");
 
+	cout << "Varaa Huone" << endl << endl;
+
 	vector<int> hotel_size = define_hotel_size();
 	vector<int> index = { -1, -1 };
 	vector<room_data> room_list;
@@ -105,6 +107,14 @@ void varaa_huone(vector<vector<room_data>>& rooms_array, vector<reservation_data
 
 		print_reservation(reservations_array[0]);
 
+		if (rooms_array[index[0]][index[1]].coupon != 0) {
+			cout << "Huoneessa on " << rooms_array[index[0]][index[1]].coupon << "% alennus." << endl;
+		}
+
+		cout << endl;
+
+		print_bill(rooms_array[index[0]][index[1]], reservations_array[0]);
+
 	}
 	else {
 		cout << "Olemme pahoilamme, mutta vapaita huoneita ei ole";
@@ -118,14 +128,66 @@ void tulosta_varaus(vector<vector<room_data>> rooms_array, vector<reservation_da
 
 	system("cls");
 
+	cout << "Viimeisin Varaus" << endl << endl;
+
 	reservation_data latest_reservation = reservations_array[0];
 
 	room_data reserved_room = rooms_array[latest_reservation.room_floor][latest_reservation.room_number];
-
-	cout << "Viimeisin Varaus" << endl << endl;
 	print_reservation(latest_reservation);
 	cout << endl;
 	print_room(reserved_room);
+	cout << endl;
+	print_bill(reserved_room, latest_reservation);
+
+	enter();
+
+}
+
+void etsi_varaus(vector<vector<room_data>> rooms_array, vector<reservation_data> reservations_array) {
+
+	system("cls");
+
+	cout << "Hae Varaus" << endl << endl;
+
+	cout << "Haetko varaajan nimellä vai varaus numerolla : " << endl;
+	cout << "[1] : Varaajan nimi" << endl;
+	cout << "[2] : Varausnumero" << endl;
+	cout << "Haku tyyppi. (1-2) >> ";
+
+	if (input_int(1, 2) == 1) {
+		cout << "hi";
+	}
+	else {
+		cout << "no";
+	}
+
+	enter();
+
+
+}
+
+void tulosta_kaikki_varaukset(vector<vector<room_data>> rooms_array, vector<reservation_data> reservations_array) {
+
+	system("cls");
+	
+	cout << "Kaikki Varaukset" << endl << endl;
+
+	reservation_data reservation;
+	room_data room;
+
+	for (int i = 0; i < reservations_array.size(); i++) {
+		reservation = reservations_array[0];
+
+		room = rooms_array[reservation.room_floor][reservation.room_number];
+
+		cout << "-----------------------------------------------------------" << endl;
+		cout << "Varaus \t\t\t: " << i + 1 << endl << endl;
+		print_reservation(reservation);
+		cout << endl;
+		print_room(room);
+		cout << endl;
+		print_bill(room, reservation);
+	}
 
 	enter();
 

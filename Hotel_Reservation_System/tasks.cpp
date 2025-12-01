@@ -78,15 +78,15 @@ string tier_desc(room_data room) {
 }
 
 void print_room(room_data room) {
-	cout << "Huone numero : " << output_room_number(room.floor, room.number) << endl;
-	cout << "Huone malli : " << type_desc(room) << endl;
-	cout << "Huone taso : " << tier_desc(room) << endl;
+	cout << "Huone numero \t\t: " << output_room_number(room.floor, room.number) << endl;
+	cout << "Huone malli \t\t: " << type_desc(room) << endl;
+	cout << "Huone taso \t\t: " << tier_desc(room) << endl;
 }
 
 void print_reservation(reservation_data reservation) {
-	cout << "Varaus numero : " << reservation.reservation << endl;
-	cout << "Varaajan nimi : " << reservation.name << endl;
-	cout << "Varauksen kesto : " << reservation.stay << " päivää" << endl;
+	cout << "Varaus numero \t\t: " << reservation.reservation << endl;
+	cout << "Varaajan nimi \t\t: " << reservation.name << endl;
+	cout << "Varauksen kesto \t: " << reservation.stay << " päivää" << endl;
 }
 
 bool any_free_rooms(vector<vector<room_data>> rooms_array) {
@@ -95,8 +95,8 @@ bool any_free_rooms(vector<vector<room_data>> rooms_array) {
 
 	bool return_value = true;
 
-	for (int i = 0; i <= hotel_size[0] - 1; i++) {
-		for (int j = 0; j <= hotel_size[1] - 1; j++) {
+	for (int i = 0; i < hotel_size[0]; i++) {
+		for (int j = 0; j < hotel_size[1]; j++) {
 			if (rooms_array[i][j].reserved == true) {
 				return_value = false;
 			}
@@ -123,8 +123,8 @@ bool free_rooms(vector<vector<room_data>> rooms_array, int floor, int type, int 
 		room_tier = "deluxe";
 	}
 
-	for (int i = 0; i <= hotel_size[0] - 1; i++) {
-		for (int j = 0; j <= hotel_size[1] - 1; j++) {
+	for (int i = 0; i < hotel_size[0]; i++) {
+		for (int j = 0; j < hotel_size[1]; j++) {
 			if ((rooms_array[i][j].type == room_type || type == -1) && (rooms_array[i][j].tier == room_tier || tier == -1) && (rooms_array[i][j].floor == floor - 1 || floor == -1)) {
 				return true;
 			}
@@ -169,7 +169,7 @@ int create_reservation_number(vector<reservation_data> reservations_array) {
 		number = random_num(10000, 99999);
 
 		if (length > 0) {
-			for (int i = 0; i <= length - 1; i++) {
+			for (int i = 0; i < length; i++) {
 				if (reservations_array[i].reservation == number) {
 					number = -1;
 				}
@@ -198,8 +198,8 @@ vector<room_data> collect_rooms(vector<vector<room_data>> rooms_array, int floor
 		room_tier = "deluxe";
 	}
 
-	for (int i = 0; i <= hotel_size[0] - 1; i++) {
-		for (int j = 0; j <= hotel_size[1] - 1; j++) {
+	for (int i = 0; i < hotel_size[0]; i++) {
+		for (int j = 0; j < hotel_size[1]; j++) {
 			if ((rooms_array[i][j].type == room_type || type == -1) && (rooms_array[i][j].tier == room_tier || tier == -1) && (rooms_array[i][j].floor == floor - 1 || floor == -1)) {
 				return_array.push_back(rooms_array[i][j]);
 			}
@@ -221,4 +221,45 @@ vector<int> random_from_list(vector<room_data> room_list) {
 
 	} while (random == -1);
 	return { room_list[random].floor, room_list[random].number - 1};
+}
+
+void print_bill(room_data room, reservation_data reservation) {
+
+	double base_cost = 100.0, cost_multiplier = 1.0;
+
+	if (room.type == "double") {
+		base_cost = 150.0;
+	}
+
+	if (room.tier == "premium") {
+		cost_multiplier = 1.5;
+	}
+	else if (room.tier == "deluxe") {
+		cost_multiplier = 2.0;
+	}
+
+	cout << "Huoneen pohja hinta \t: " << base_cost << " Euroa" << endl;
+	cout << "Huoneen lisä hinta \t: " << base_cost * (cost_multiplier - 1.0) << " Euroa" << endl;
+	cout << "Varauksen kesto \t: " << reservation.stay << " Päivää" << endl;
+	cout << "Alennuskuponki \t\t: " << room.coupon << "%" << endl;
+
+	cout << "Kokonaishinta \t\t: " << print_cost(room, reservation) << " Euroa" << endl;;
+}
+
+double print_cost(room_data room, reservation_data reservation) {
+	double base_cost = 100.0, cost_multiplier = 1.0;
+
+	if (room.type == "double") {
+		base_cost = 150.0;
+	}
+
+	if (room.tier == "premium") {
+		cost_multiplier = 1.5;
+	}
+	else if (room.tier == "deluxe") {
+		cost_multiplier = 2.0;
+	}
+
+	return (base_cost * cost_multiplier * reservation.stay) - (base_cost * cost_multiplier * reservation.stay / 100 * room.coupon);
+
 }

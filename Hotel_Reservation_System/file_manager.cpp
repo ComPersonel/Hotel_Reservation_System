@@ -26,8 +26,8 @@ void load_room_data(vector<vector<room_data>>& rooms_array) {
 	string line;
 	vector<int> hotel_size = define_hotel_size();
 
-	for (int i = 0; i <= hotel_size[0] - 1; i++) {
-		for (int j = 0; j <= hotel_size[1] - 1 && getline(room_data, line); j++) {
+	for (int i = 0; i < hotel_size[0]; i++) {
+		for (int j = 0; j < hotel_size[1] && getline(room_data, line); j++) {
 			stringstream ss(line);
 			string floor, number, reserved, type, tier, coupon;
 
@@ -56,8 +56,8 @@ void save_room_data(vector<vector<room_data>> rooms_array) {
 
 	vector<int> hotel_size = define_hotel_size();
 
-	for (int i = 0; i <= hotel_size[0] - 1; i++) {
-		for (int j = 0; j <= hotel_size[1] - 1; j++) {
+	for (int i = 0; i < hotel_size[0]; i++) {
+		for (int j = 0; j < hotel_size[1]; j++) {
 			room_data << rooms_array[i][j].floor << ";";
 			room_data << rooms_array[i][j].number << ";";
 			room_data << rooms_array[i][j].reserved << ";";
@@ -78,8 +78,8 @@ void generate_room_data(vector<vector<room_data>>& rooms_array) {
 
 	vector<int> hotel_size = define_hotel_size();
 
-	for (int i = 0; i <= hotel_size[0] - 1; i++) {
-		for (int j = 0; j <= hotel_size[1] - 1; j++) {
+	for (int i = 0; i < hotel_size[0]; i++) {
+		for (int j = 0; j < hotel_size[1]; j++) {
 			rooms_array[i][j].floor  = i;
 			rooms_array[i][j].number = j + 1;
 			rooms_array[i][j].reserved = false;

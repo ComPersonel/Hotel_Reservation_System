@@ -8,6 +8,7 @@
 # include <fstream>
 # include <sstream>
 # include <vector>
+# include <iomanip>
 
 using namespace std;
 
@@ -57,7 +58,11 @@ void create_reservation(vector<reservation_data>&, int, int, std::string, int);
 int create_reservation_number(vector<reservation_data>);
 vector<room_data> collect_rooms(vector<vector<room_data>>, int, int, int);
 vector<int> random_from_list(vector<room_data>);
+void print_bill(room_data, reservation_data);
+double print_cost(room_data, reservation_data);
 
 // Komento funktiot
 void varaa_huone(vector<vector<room_data>>&, vector<reservation_data>&);
 void tulosta_varaus(vector<vector<room_data>>, vector<reservation_data>);
+void etsi_varaus(vector<vector<room_data>>, vector<reservation_data>);
+void tulosta_kaikki_varaukset(vector<vector<room_data>>, vector<reservation_data>);
