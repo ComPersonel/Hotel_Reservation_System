@@ -60,4 +60,4 @@ vector<int> random_from_list(vector<room_data>);
 
 // Komento funktiot
 void varaa_huone(vector<vector<room_data>>&, vector<reservation_data>&);
-void tulosta_varaus(vector<vector<room_data>>&, vector<reservation_data>&);
+void tulosta_varaus(vector<vector<room_data>>, vector<reservation_data>);

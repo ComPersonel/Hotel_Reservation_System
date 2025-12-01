@@ -114,7 +114,7 @@ void varaa_huone(vector<vector<room_data>>& rooms_array, vector<reservation_data
 
 }
 
-void tulosta_varaus(vector<vector<room_data>>& rooms_array, vector<reservation_data>& reservations_array) {
+void tulosta_varaus(vector<vector<room_data>> rooms_array, vector<reservation_data> reservations_array) {
 
 	system("cls");
 
