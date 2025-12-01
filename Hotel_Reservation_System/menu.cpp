@@ -46,7 +46,7 @@ int main() {
 
 		switch (command) {
 		case 1: varaa_huone(rooms_array, reservations_array);  break;
-		case 2: cout << "2";  break;
+		case 2: tulosta_varaus(rooms_array, reservations_array);  break;
 		case 3: cout << "3";  break;
 		case 4: cout << "4";  break;
 

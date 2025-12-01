@@ -83,6 +83,12 @@ void print_room(room_data room) {
 	cout << "Huone taso : " << tier_desc(room) << endl;
 }
 
+void print_reservation(reservation_data reservation) {
+	cout << "Varaus numero : " << reservation.reservation << endl;
+	cout << "Varaajan nimi : " << reservation.name << endl;
+	cout << "Varauksen kesto : " << reservation.stay << " päivää" << endl;
+}
+
 bool any_free_rooms(vector<vector<room_data>> rooms_array) {
 
 	vector<int> hotel_size = define_hotel_size();
@@ -129,57 +135,6 @@ bool free_rooms(vector<vector<room_data>> rooms_array, int floor, int type, int 
 
 }
 
-/*
-bool free_rooms_floor(vector<vector<room_data>> rooms_array, int floor) {
-
-	vector<int> hotel_size = define_hotel_size();
-
-	for (int i = 0; i <= hotel_size[1] - 1; i++) {
-		if (rooms_array[floor][i].reserved == false) {
-			return true;
-		}
-	}
-	return false;
-}
-
-bool free_rooms_type(vector<vector<room_data>> rooms_array, int type) {
-
-	string room_type = "single";
-	vector<int> hotel_size = define_hotel_size();
-
-	if (type == 2) {
-		room_type = "double";
-	}
-
-	for (int i = 0; i <= hotel_size[0] - 1; i++) {
-		for (int j = 0; j <= hotel_size[1] - 1; j++) {
-			if (rooms_array[j][i].type == room_type) {
-				return true;
-			}
-		}
-	}
-	return false;
-}
-
-bool free_rooms_type_floor(vector<vector<room_data>> rooms_array, int type, int floor) {
-
-	string room_type = "single";
-	vector<int> hotel_size = define_hotel_size();
-
-	if (type == 2) {
-		room_type = "double";
-	}
-
-	for (int i = 0; i <= hotel_size[1] - 1; i++) {
-		if (rooms_array[floor][i].type == room_type) {
-			return true;
-		}
-	}
-	return false;
-}
-
-*/
-
 int output_room_number(int floor, int number) {
 	return ((floor + 1) * 100) + number;
 }
@@ -192,17 +147,17 @@ vector<int> index_from_number(int number) {
 	return { floor, index };
 }
 
-void create_reservation(vector<reservation_data> reservations_array, int floor, int number, string name, int stay) {
+void create_reservation(vector<reservation_data>& reservations_array, int floor, int number, string name, int stay) {
 
 	reservation_data new_reservation;
 
 	new_reservation.reservation = create_reservation_number(reservations_array);
 	new_reservation.room_floor = floor;
-	new_reservation.room_number = floor;
+	new_reservation.room_number = number;
 	new_reservation.name = name;
 	new_reservation.stay = stay;
 
-	reservations_array.push_back(new_reservation);
+	reservations_array.insert(reservations_array.begin(),new_reservation);
 }
 
 int create_reservation_number(vector<reservation_data> reservations_array) {

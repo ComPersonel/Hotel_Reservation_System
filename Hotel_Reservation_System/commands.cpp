@@ -32,7 +32,7 @@ void varaa_huone(vector<vector<room_data>>& rooms_array, vector<reservation_data
 				}
 				else {
 					cout << "Mihin kerrokseen haluat huoneen? (1-" << hotel_size[0] << ") >> ";
-					floor = input_int(1, hotel_size[0] - 1);
+					floor = input_int(1, hotel_size[0]);
 
 					if (free_rooms(rooms_array, floor, type, -1) == false) {
 						floor = -1;
@@ -78,6 +78,7 @@ void varaa_huone(vector<vector<room_data>>& rooms_array, vector<reservation_data
 
 				cout << "Otatteko yhden vai kahden hengen huoneen? (1-2) >> ";
 				type = input_int(1, 2);
+				cout << endl;
 
 				room_list = collect_rooms(rooms_array, -1, type, -1);
 
@@ -91,22 +92,40 @@ void varaa_huone(vector<vector<room_data>>& rooms_array, vector<reservation_data
 
 		}
 
-		cout << "Syötä nimesi. >> ";
+		cout << endl << "Syötä nimesi. >> ";
 		cin.clear();
 		cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		name = input_name();
 
 		cout << "Montako vuorokautta aiotte pysyä. >> ";
 		stay = input_int(1, 999999);
+		cout << endl;
 
-		reservation = create_reservation_number(reservations_array);
+		create_reservation(reservations_array, index[0], index[1], name, stay);
 
-		cout << reservation;
+		print_reservation(reservations_array[0]);
 
 	}
 	else {
 		cout << "Olemme pahoilamme, mutta vapaita huoneita ei ole";
 	}
+
+	enter();
+
+}
+
+void tulosta_varaus(vector<vector<room_data>>& rooms_array, vector<reservation_data>& reservations_array) {
+
+	system("cls");
+
+	reservation_data latest_reservation = reservations_array[0];
+
+	room_data reserved_room = rooms_array[latest_reservation.room_floor][latest_reservation.room_number];
+
+	cout << "Viimeisin Varaus" << endl << endl;
+	print_reservation(latest_reservation);
+	cout << endl;
+	print_room(reserved_room);
 
 	enter();
 

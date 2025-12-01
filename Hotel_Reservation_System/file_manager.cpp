@@ -158,7 +158,7 @@ void save_reservation_data(vector<reservation_data> reservations_array) {
 		reservation_data << reservations_array[i].room_floor << ";";
 		reservation_data << reservations_array[i].room_number << ";";
 		reservation_data << reservations_array[i].name << ";";
-		reservation_data << reservations_array[i].stay << ";";
+		reservation_data << reservations_array[i].stay << ";" << endl;
 	}
 
 }
