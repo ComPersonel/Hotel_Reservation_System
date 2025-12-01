@@ -9,6 +9,7 @@
 # include <sstream>
 # include <vector>
 # include <iomanip>
+# include <limits>
 
 using namespace std;
 
@@ -60,6 +61,8 @@ vector<room_data> collect_rooms(vector<vector<room_data>>, int, int, int);
 vector<int> random_from_list(vector<room_data>);
 void print_bill(room_data, reservation_data);
 double print_cost(room_data, reservation_data);
+vector<reservation_data> find_by_name(vector<reservation_data>, std::string);
+vector<reservation_data> find_by_reservation(vector<reservation_data>, int);
 
 // Komento funktiot
 void varaa_huone(vector<vector<room_data>>&, vector<reservation_data>&);

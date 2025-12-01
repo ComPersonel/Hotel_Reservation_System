@@ -16,7 +16,7 @@ int input_int(int min, int max) {
 
 	while (!(cin >> result) || result < min || result > max) {
 		cin.clear();
-		cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		cout << "Huono syöte, yritä uudelleen. >> ";
 	}
 
@@ -28,7 +28,7 @@ bool yes_no() {
 
 	while (!(cin >> result) || (result != 'n' && result != 'N' && result != 'y' && result != 'Y')) {
 		cin.clear();
-		cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		cout << "Huono syöte, yritä uudelleen. >> ";
 	}
 	if (result == 'y' || result == 'Y') {
@@ -43,10 +43,9 @@ void enter() {
 	cout << endl << "Paina enter jatkaaksesi.";
 
 	cin.clear();
-	cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-	if (cin.get() == '\n') {
-	}
+	cin.get();
 }
 
 string input_name() {
@@ -55,11 +54,17 @@ string input_name() {
 
 	while (!getline(cin, name)) {
 		cin.clear();
-		cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		cout << "Huono syöte, yritä uudelleen. >> ";
 	}
 
-	name.erase(std::remove(name.begin(), name.end(), ';'), name.end());
+	name.erase(remove(name.begin(), name.end(), ';'), name.end());
+
+	if (!cin.putback('\n')) {
+		if (!cin) {
+			cin.clear();
+		}
+	}
 
 	return name;
 }
@@ -262,4 +267,26 @@ double print_cost(room_data room, reservation_data reservation) {
 
 	return (base_cost * cost_multiplier * reservation.stay) - (base_cost * cost_multiplier * reservation.stay / 100 * room.coupon);
 
+}
+
+vector<reservation_data> find_by_name(vector<reservation_data> reservations_array, string name) {
+	vector<reservation_data> reservations_list;
+
+	for (int i = 0; i < reservations_array.size(); i++) {
+		if (reservations_array[i].name == name) {
+			reservations_list.push_back(reservations_array[i]);
+		}
+	}
+
+	return reservations_list;
+}
+
+vector<reservation_data> find_by_reservation(vector<reservation_data> reservations_array, int reservation) {
+	vector<reservation_data> reservations_list;
+	for (int i = 0; i < reservations_array.size(); i++) {
+		if (reservations_array[i].reservation == reservation) {
+			reservations_list.push_back(reservations_array[i]);
+		}
+	}
+	return reservations_list;
 }

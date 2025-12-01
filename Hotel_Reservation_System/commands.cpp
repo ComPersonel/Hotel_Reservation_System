@@ -145,6 +145,12 @@ void tulosta_varaus(vector<vector<room_data>> rooms_array, vector<reservation_da
 
 void etsi_varaus(vector<vector<room_data>> rooms_array, vector<reservation_data> reservations_array) {
 
+	vector<reservation_data> reservation_finds;
+	reservation_data reservation;
+	room_data room;
+	string name;
+	int reservation_number;
+
 	system("cls");
 
 	cout << "Hae Varaus" << endl << endl;
@@ -155,14 +161,40 @@ void etsi_varaus(vector<vector<room_data>> rooms_array, vector<reservation_data>
 	cout << "Haku tyyppi. (1-2) >> ";
 
 	if (input_int(1, 2) == 1) {
-		cout << "hi";
+		cout << "Syötä haettava nimi. >> ";
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		name = input_name();
+		reservation_finds = find_by_name(reservations_array, name);
 	}
 	else {
-		cout << "no";
+
+		cout << "Syötä haettava varaus. >> ";
+		reservation_number = input_int(10000, 99999);
+		reservation_finds = find_by_reservation(reservations_array, reservation_number);
+	}
+
+	if (reservation_finds.size() == 0) {
+		cout << "Varauksia ei löytynyt.";
+	}
+	else {
+		for (int i = 0; i < reservation_finds.size(); i++) {
+			reservation = reservation_finds[i];
+
+			room = rooms_array[reservation.room_floor][reservation.room_number];
+
+			cout << "-----------------------------------------------------------" << endl;
+			cout << "Varaus \t\t\t: " << i + 1 << endl << endl;
+			print_reservation(reservation);
+			cout << endl;
+			print_room(room);
+			cout << endl;
+			print_bill(room, reservation);
+
+		}
+
 	}
 
 	enter();
-
 
 }
 
@@ -176,7 +208,7 @@ void tulosta_kaikki_varaukset(vector<vector<room_data>> rooms_array, vector<rese
 	room_data room;
 
 	for (int i = 0; i < reservations_array.size(); i++) {
-		reservation = reservations_array[0];
+		reservation = reservations_array[i];
 
 		room = rooms_array[reservation.room_floor][reservation.room_number];
 
