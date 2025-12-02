@@ -129,6 +129,8 @@ void load_reservation_data(vector<reservation_data>& reservations_array, vector<
 
 	string line;
 
+	int index = 0;
+
 	while (getline(reservation_data, line)) {
 		stringstream ss(line);
 		string reservation, floor, number, name, stay;
@@ -142,7 +144,9 @@ void load_reservation_data(vector<reservation_data>& reservations_array, vector<
 
 			rooms_array[stoi(floor)][stoi(number)].reserved = true;
 
-			reservations_array.push_back({ stoi(reservation), stoi(floor), stoi(number), name, stoi(stay) });
+			reservations_array.push_back({ index, stoi(reservation), stoi(floor), stoi(number), name, stoi(stay) });
+
+			index++;
 
 		}
 

@@ -273,13 +273,32 @@ void muokkaa_varaus(vector<vector<room_data>>& rooms_array, vector<reservation_d
 
 		}
 
-		cout << endl << "Mitä elementtiä haluat muokata : " << endl;
-		cout << "[1] : Peru Varaus" << endl;
-		cout << "[2] : Huone" << endl;
-		cout << "[3] : Nimi" << endl;
-		cout << "[4] : Kesto" << endl;
-		cout << "[0] : Taaksepäin" << endl;
-		cout << "Tehtävä >> " << endl;
+		do {
+			cout << endl << "Mitä elementtiä haluat muokata : " << endl;
+			cout << "[1] : Peru Varaus" << endl;
+			cout << "[2] : Huone" << endl;
+			cout << "[3] : Nimi" << endl;
+			cout << "[4] : Kesto" << endl;
+			cout << "[0] : Takaisin" << endl;
+			cout << "Suoritettava tehtävä >> ";
+			input = input_int(0, 4);
+
+			switch (input) {
+			case 1: input = peru_varaus(rooms_array, reservations_array, reservation); break;
+			case 2: cout << "2"; break;
+			case 3: cout << "3"; break;
+			case 4: cout << "4"; break;
+			case 0: cout << "0"; break;
+			default: cout << "Virhetilanne";
+			}
+
+			if (input > 1) {
+				cout << "Haluatko muokata vielä jotain? (Y/N) >> ";
+				if (yes_no() == false) {
+					input = -1;
+				}
+			}
+		} while (input > 1);
 
 	}
 
@@ -313,4 +332,23 @@ void tulosta_kaikki_varaukset(vector<vector<room_data>> rooms_array, vector<rese
 
 	enter();
 
+}
+
+int peru_varaus(vector<vector<room_data>>& rooms_array, vector<reservation_data>& reservations_array, reservation_data reservation) {
+
+	int success = 999999;
+	cout << endl << "Oletko varma, että haluat perua varauksen? (Y/N) >>";
+
+	if (yes_no() == true) {
+
+		rooms_array[reservation.room_floor][reservation.room_number].reserved = false;
+
+		reservations_array.erase(reservations_array.begin() + reservation.index);
+
+		cout << "Varaus Peruutettu.";
+
+		success = 0;
+	}
+
+	return success;
 }

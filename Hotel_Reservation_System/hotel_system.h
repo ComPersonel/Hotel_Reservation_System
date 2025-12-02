@@ -25,6 +25,7 @@ struct room_data {
 
 // Reservation_data struct joka sis‰lt‰‰ kaiken varaus datan
 struct reservation_data {
+	int index; // Varauksen index
 	int reservation; // Varaus numero
 	int room_floor; // Huoneen kerros
 	int room_number; // Huoneen numero
@@ -70,3 +71,4 @@ void tulosta_varaus(vector<vector<room_data>>, vector<reservation_data>);
 void etsi_varaus(vector<vector<room_data>>, vector<reservation_data>);
 void muokkaa_varaus(vector<vector<room_data>>&, vector<reservation_data>&);
 void tulosta_kaikki_varaukset(vector<vector<room_data>>, vector<reservation_data>);
+int peru_varaus(vector<vector<room_data>>&, vector<reservation_data>&, reservation_data);

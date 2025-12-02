@@ -120,7 +120,7 @@
 2;20;0;single;premium;10;
 2;21;0;single;premium;10;
 2;22;0;single;premium;20;
-2;23;1;single;premium;0;
+2;23;0;single;premium;0;
 2;24;0;single;premium;0;
 2;25;0;single;deluxe;0;
 2;26;0;double;basic;10;
