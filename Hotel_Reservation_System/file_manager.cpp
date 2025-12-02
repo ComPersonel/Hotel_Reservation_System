@@ -40,7 +40,7 @@ void load_room_data(vector<vector<room_data>>& rooms_array) {
 
 			rooms_array[i][j].floor = stoi(floor);
 			rooms_array[i][j].number = stoi(number);
-			rooms_array[i][j].reserved = stoi(reserved);
+			rooms_array[i][j].reserved = false;
 			rooms_array[i][j].type = type;
 			rooms_array[i][j].tier = tier;
 			rooms_array[i][j].coupon = stoi(coupon);
@@ -123,7 +123,7 @@ vector<int> define_hotel_size() {
 
 
 // Lataa Varaukset ---------------------------------------------------------
-void load_reservation_data(vector<reservation_data>& reservations_array) {
+void load_reservation_data(vector<reservation_data>& reservations_array, vector<vector<room_data>>& rooms_array) {
 
 	ifstream reservation_data("reservation_data.txt");
 
@@ -139,6 +139,8 @@ void load_reservation_data(vector<reservation_data>& reservations_array) {
 			getline(ss, number, ';');
 			getline(ss, name, ';');
 			getline(ss, stay, ';');
+
+			rooms_array[stoi(floor)][stoi(number)].reserved = true;
 
 			reservations_array.push_back({ stoi(reservation), stoi(floor), stoi(number), name, stoi(stay) });
 

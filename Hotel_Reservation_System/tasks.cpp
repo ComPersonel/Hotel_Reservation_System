@@ -98,12 +98,12 @@ bool any_free_rooms(vector<vector<room_data>> rooms_array) {
 
 	vector<int> hotel_size = define_hotel_size();
 
-	bool return_value = true;
+	bool return_value = false;
 
 	for (int i = 0; i < hotel_size[0]; i++) {
 		for (int j = 0; j < hotel_size[1]; j++) {
-			if (rooms_array[i][j].reserved == true) {
-				return_value = false;
+			if (rooms_array[i][j].reserved == false) {
+				return_value = true;
 			}
 		}
 	}

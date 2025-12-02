@@ -105,6 +105,8 @@ void varaa_huone(vector<vector<room_data>>& rooms_array, vector<reservation_data
 
 		create_reservation(reservations_array, index[0], index[1], name, stay);
 
+		rooms_array[index[0]][index[1]].reserved = true;
+
 		print_reservation(reservations_array[0]);
 
 		if (rooms_array[index[0]][index[1]].coupon != 0) {
@@ -193,6 +195,94 @@ void etsi_varaus(vector<vector<room_data>> rooms_array, vector<reservation_data>
 		}
 
 	}
+
+	enter();
+
+}
+
+void muokkaa_varaus(vector<vector<room_data>>& rooms_array, vector<reservation_data>& reservations_array) {
+
+	vector<reservation_data> reservation_finds;
+	reservation_data reservation;
+	room_data room;
+	string name;
+	int reservation_number, input;
+
+	system("cls");
+
+	cout << "Muokkaa Varaus" << endl << endl;
+
+	cout << "Haetko varaajan nimellä vai varaus numerolla : " << endl;
+	cout << "[1] : Varaajan nimi" << endl;
+	cout << "[2] : Varausnumero" << endl;
+	cout << "Haku tyyppi. (1-2) >> ";
+
+	if (input_int(1, 2) == 1) {
+		cout << "Syötä haettava nimi. >> ";
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		name = input_name();
+		reservation_finds = find_by_name(reservations_array, name);
+	}
+	else {
+
+		cout << "Syötä haettava varaus. >> ";
+		reservation_number = input_int(10000, 99999);
+		reservation_finds = find_by_reservation(reservations_array, reservation_number);
+	}
+
+	if (reservation_finds.size() == 0) {
+		cout << "Varauksia ei löytynyt.";
+	}
+	else {
+		for (int i = 0; i < reservation_finds.size(); i++) {
+			reservation = reservation_finds[i];
+
+			room = rooms_array[reservation.room_floor][reservation.room_number];
+
+			cout << "-----------------------------------------------------------" << endl;
+			cout << "Varaus \t\t\t: " << i + 1 << endl << endl;
+			print_reservation(reservation);
+			cout << endl;
+			print_room(room);
+			cout << endl;
+			print_bill(room, reservation);
+
+		}
+
+		if (reservation_finds.size() > 1) {
+
+			cout << endl << "Varaus jota haluat muokata. (1-" << reservation_finds.size() << ") : >> ";
+			input = input_int(1, reservation_finds.size()) - 1;
+			cout << endl;
+
+			reservation = reservation_finds[input];
+
+			room = rooms_array[reservation.room_floor][reservation.room_number];
+
+			print_reservation(reservation);
+			cout << endl;
+			print_room(room);
+			cout << endl;
+			print_bill(room, reservation);
+		}
+		else {
+
+			reservation = reservation_finds[0];
+
+			room = rooms_array[reservation.room_floor][reservation.room_number];
+
+		}
+
+		cout << endl << "Mitä elementtiä haluat muokata : " << endl;
+		cout << "[1] : Peru Varaus" << endl;
+		cout << "[2] : Huone" << endl;
+		cout << "[3] : Nimi" << endl;
+		cout << "[4] : Kesto" << endl;
+		cout << "[0] : Taaksepäin" << endl;
+		cout << "Tehtävä >> " << endl;
+
+	}
+
 
 	enter();
 

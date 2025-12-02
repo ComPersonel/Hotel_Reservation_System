@@ -22,19 +22,19 @@ int main() {
 	vector<reservation_data> reservations_array;
 
 	load_room_data(rooms_array);
-	load_reservation_data(reservations_array);
+	load_reservation_data(reservations_array, rooms_array);
 
 	do { // Pyydä tehtävä Numeroa
 		system("cls");
 
 		cout << "--------------------------" << endl;
 		cout << "Tehtävät : " << "\t\t|" << endl;
-		cout << "1. Varaa Huone" << "\t\t|" << endl;
-		cout << "2. Tulosta Varaus" << "\t|" << endl;
-		cout << "3. Etsi Varaus" << "\t\t|" << endl;
-		cout << "4. Peru Varaus" << "\t\t|" << endl;
-		cout << "5. Kaikki Varaukset" << "\t|" << endl;
-		cout << "0. sulje ohjelma" << "\t|" << endl;
+		cout << "[1] : Varaa Huone" << "\t|" << endl;
+		cout << "[2] : Tulosta Varaus" << "\t|" << endl;
+		cout << "[3] : Etsi Varaus" << "\t|" << endl;
+		cout << "[4] : Muokkaa Varaus" << "\t|" << endl;
+		cout << "[5] : Kaikki Varaukset" << "\t|" << endl;
+		cout << "[0] : sulje ohjelma" << "\t|" << endl;
 		cout << "--------------------------" << endl;
 		cout << "Syötä toiminto >> ";
 
@@ -48,7 +48,7 @@ int main() {
 		case 1: varaa_huone(rooms_array, reservations_array);  break;
 		case 2: tulosta_varaus(rooms_array, reservations_array);  break;
 		case 3: etsi_varaus(rooms_array, reservations_array);  break;
-		case 4: cout << "4";  break;
+		case 4: muokkaa_varaus(rooms_array, reservations_array);  break;
 		case 5: tulosta_kaikki_varaukset(rooms_array, reservations_array);  break;
 
 		case 0: cout << "Suljetaan Ohjelma";  break;
@@ -82,9 +82,9 @@ void dev_menu(vector<vector<room_data>>& rooms_array) {
 
 		cout << "--------------------------" << endl;
 		cout << "Developer Menu" << "\t\t|" << endl;
-		cout << "1. Luo Huoonedata" << "\t|" << endl;
-		cout << "2. Arvo Kuponkeja" << "\t|" << endl;
-		cout << "0. sulje ohjelma" << "\t|" << endl;
+		cout << "[1] : Luo Huoonedata" << "\t|" << endl;
+		cout << "[2] : Arvo Kuponkeja" << "\t|" << endl;
+		cout << "[0] : sulje ohjelma" << "\t|" << endl;
 		cout << "--------------------------" << endl;
 		cout << "Syötä toiminto >> ";
 

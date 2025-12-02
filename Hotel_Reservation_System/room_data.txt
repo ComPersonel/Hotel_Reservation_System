@@ -1,5 +1,5 @@
-0;1;0;single;basic;0;
-0;2;0;single;basic;20;
+0;1;1;single;basic;0;
+0;2;1;single;basic;20;
 0;3;0;single;basic;0;
 0;4;0;single;basic;10;
 0;5;0;single;basic;0;
@@ -7,8 +7,8 @@
 0;7;0;single;basic;0;
 0;8;0;single;basic;0;
 0;9;0;single;basic;10;
-0;10;0;single;basic;10;
-0;11;0;single;basic;0;
+0;10;1;single;basic;10;
+0;11;1;single;basic;0;
 0;12;0;single;basic;10;
 0;13;0;single;basic;0;
 0;14;0;single;premium;0;
@@ -42,14 +42,14 @@
 0;42;0;double;premium;20;
 0;43;0;double;premium;0;
 0;44;0;double;premium;0;
-0;45;0;double;premium;10;
+0;45;1;double;premium;10;
 0;46;0;double;premium;0;
 0;47;0;double;premium;0;
 0;48;0;double;premium;0;
 0;49;0;double;premium;0;
 0;50;0;double;deluxe;0;
 1;1;0;single;basic;0;
-1;2;0;single;basic;10;
+1;2;1;single;basic;10;
 1;3;0;single;basic;0;
 1;4;0;single;basic;0;
 1;5;0;single;basic;0;
@@ -77,7 +77,7 @@
 1;27;0;double;basic;0;
 1;28;0;double;basic;10;
 1;29;0;double;basic;0;
-1;30;0;double;basic;0;
+1;30;1;double;basic;0;
 1;31;0;double;basic;0;
 1;32;0;double;basic;0;
 1;33;0;double;basic;0;
@@ -89,7 +89,7 @@
 1;39;0;double;premium;0;
 1;40;0;double;premium;10;
 1;41;0;double;premium;20;
-1;42;0;double;premium;0;
+1;42;1;double;premium;0;
 1;43;0;double;premium;10;
 1;44;0;double;premium;10;
 1;45;0;double;premium;0;
@@ -120,7 +120,7 @@
 2;20;0;single;premium;10;
 2;21;0;single;premium;10;
 2;22;0;single;premium;20;
-2;23;0;single;premium;0;
+2;23;1;single;premium;0;
 2;24;0;single;premium;0;
 2;25;0;single;deluxe;0;
 2;26;0;double;basic;10;
@@ -133,9 +133,9 @@
 2;33;0;double;basic;10;
 2;34;0;double;basic;0;
 2;35;0;double;basic;10;
-2;36;0;double;basic;0;
+2;36;1;double;basic;0;
 2;37;0;double;basic;0;
-2;38;0;double;basic;20;
+2;38;1;double;basic;20;
 2;39;0;double;premium;10;
 2;40;0;double;premium;0;
 2;41;0;double;premium;0;
@@ -147,4 +147,4 @@
 2;47;0;double;premium;20;
 2;48;0;double;premium;10;
 2;49;0;double;premium;10;
-2;50;0;double;deluxe;0;
+2;50;1;double;deluxe;0;

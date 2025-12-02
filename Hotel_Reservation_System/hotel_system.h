@@ -37,7 +37,7 @@ void check_files();
 void load_room_data(vector<vector<room_data>>&);
 void save_room_data(vector<vector<room_data>>);
 void generate_room_data(vector<vector<room_data>>&);
-void load_reservation_data(vector<reservation_data>&);
+void load_reservation_data(vector<reservation_data>&, vector<vector<room_data>>&);
 void save_reservation_data(vector<reservation_data>);
 vector<int> define_hotel_size();
 
@@ -68,4 +68,5 @@ vector<reservation_data> find_by_reservation(vector<reservation_data>, int);
 void varaa_huone(vector<vector<room_data>>&, vector<reservation_data>&);
 void tulosta_varaus(vector<vector<room_data>>, vector<reservation_data>);
 void etsi_varaus(vector<vector<room_data>>, vector<reservation_data>);
+void muokkaa_varaus(vector<vector<room_data>>&, vector<reservation_data>&);
 void tulosta_kaikki_varaukset(vector<vector<room_data>>, vector<reservation_data>);
