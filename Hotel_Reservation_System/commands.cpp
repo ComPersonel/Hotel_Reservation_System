@@ -287,7 +287,7 @@ void muokkaa_varaus(vector<vector<room_data>>& rooms_array, vector<reservation_d
 			case 1: input = peru_varaus(rooms_array, reservations_array, reservation); break;
 			case 2: cout << "2"; break;
 			case 3: muokkaa_nimi(reservations_array, reservation); break;
-			case 4: cout << "4"; break;
+			case 4: muokkaa_kesto(reservations_array, reservation); break;
 			case 0: cout << "0"; break;
 			default: cout << "Virhetilanne";
 			}
@@ -301,7 +301,6 @@ void muokkaa_varaus(vector<vector<room_data>>& rooms_array, vector<reservation_d
 		} while (input > 1);
 
 	}
-
 
 	enter();
 
@@ -364,10 +363,29 @@ void muokkaa_nimi(vector<reservation_data>& reservations_array, reservation_data
 		cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		name = input_name();
 
-		cout << "Onko tämä oikein : " << name;
+		cout << "Onko tämä oikein : " << name << " (Y/N) >> ";
 
 	} while (yes_no() == false);
 
 	reservations_array[reservation.index].name = name;
+
+}
+
+void muokkaa_kesto(vector<reservation_data>& reservations_array, reservation_data reservation) {
+
+	int stay;
+
+	do {
+
+		cout << "Syötä uusi keston pituus. >> ";
+
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		stay = input_int(1, 999999);
+
+		cout << "Onko tämä oikein : " << stay << " päivää (Y/N) >> ";
+
+	} while (yes_no() == false);
+
+	reservations_array[reservation.index].stay = stay;
 
 }
