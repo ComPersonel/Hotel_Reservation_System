@@ -133,7 +133,7 @@
 2;33;0;double;basic;10;
 2;34;0;double;basic;0;
 2;35;0;double;basic;10;
-2;36;1;double;basic;0;
+2;36;0;double;basic;0;
 2;37;0;double;basic;0;
 2;38;1;double;basic;20;
 2;39;0;double;premium;10;

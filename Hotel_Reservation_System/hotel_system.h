@@ -72,3 +72,4 @@ void etsi_varaus(vector<vector<room_data>>, vector<reservation_data>);
 void muokkaa_varaus(vector<vector<room_data>>&, vector<reservation_data>&);
 void tulosta_kaikki_varaukset(vector<vector<room_data>>, vector<reservation_data>);
 int peru_varaus(vector<vector<room_data>>&, vector<reservation_data>&, reservation_data);
+void muokkaa_nimi(vector<reservation_data>&, reservation_data);

@@ -286,7 +286,7 @@ void muokkaa_varaus(vector<vector<room_data>>& rooms_array, vector<reservation_d
 			switch (input) {
 			case 1: input = peru_varaus(rooms_array, reservations_array, reservation); break;
 			case 2: cout << "2"; break;
-			case 3: cout << "3"; break;
+			case 3: muokkaa_nimi(reservations_array, reservation); break;
 			case 4: cout << "4"; break;
 			case 0: cout << "0"; break;
 			default: cout << "Virhetilanne";
@@ -351,4 +351,23 @@ int peru_varaus(vector<vector<room_data>>& rooms_array, vector<reservation_data>
 	}
 
 	return success;
+}
+
+void muokkaa_nimi(vector<reservation_data>& reservations_array, reservation_data reservation) {
+
+	string name;
+
+	do {
+
+		cout << "Syötä uusi nimi. >> ";
+
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		name = input_name();
+
+		cout << "Onko tämä oikein : " << name;
+
+	} while (yes_no() == false);
+
+	reservations_array[reservation.index].name = name;
+
 }
