@@ -481,8 +481,17 @@ void muokkaa_huone(vector<vector<room_data>>& rooms_array, vector<reservation_da
 
 		rooms_array[reservation.room_floor][reservation.room_number].reserved = false;
 
+		print_reservation(reservations_array[reservation.index]);
+		cout << endl;
+		print_room(rooms_array[index[0]][index[1]]);
+		cout << endl;
+		print_bill(rooms_array[index[0]][index[1]], reservations_array[reservation.index]);
+
 	}
 	else {
 		cout << "Olemme pahoilamme, mutta vapaita huoneita ei ole";
 	}
+
+	enter();
+
 }

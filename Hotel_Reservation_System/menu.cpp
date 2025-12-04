@@ -24,6 +24,8 @@ int main() {
 	load_room_data(rooms_array);
 	load_reservation_data(reservations_array, rooms_array);
 
+	cout << "suc";
+
 	do { // Pyydä tehtävä Numeroa
 		system("cls");
 

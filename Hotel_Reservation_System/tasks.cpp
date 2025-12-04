@@ -246,7 +246,7 @@ void print_bill(room_data room, reservation_data reservation) {
 	cout << "Huoneen pohja hinta \t: " << base_cost << " Euroa" << endl;
 	cout << "Huoneen lisä hinta \t: " << base_cost * (cost_multiplier - 1.0) << " Euroa" << endl;
 	cout << "Varauksen kesto \t: " << reservation.stay << " Päivää" << endl;
-	cout << "Alennuskuponki \t\t: " << room.coupon << "%" << endl;
+	cout << "Huone alennus \t\t: " << room.coupon << "%" << endl;
 
 	cout << "Kokonaishinta \t\t: " << print_cost(room, reservation) << " Euroa" << endl;;
 }

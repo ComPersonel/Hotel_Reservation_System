@@ -118,9 +118,19 @@ void generate_room_data(vector<vector<room_data>>& rooms_array) {
 }
 
 vector<int> define_hotel_size() {
-	return {3, 50};
-}
+	ifstream hotel_information("hotel_information.txt");
 
+	string line;
+	vector<int> result;
+
+	while (getline(hotel_information, line)) {
+		stringstream ss(line);
+		result.push_back(stoi(line));
+
+	}
+
+	return result;
+}
 
 // Lataa Varaukset ---------------------------------------------------------
 void load_reservation_data(vector<reservation_data>& reservations_array, vector<vector<room_data>>& rooms_array) {
@@ -167,4 +177,19 @@ void save_reservation_data(vector<reservation_data> reservations_array) {
 		reservation_data << reservations_array[i].stay << ";" << endl;
 	}
 
+}
+
+vector<int> define_hotel_size() {
+	ifstream hotel_information("hotel_information.txt");
+
+	string line;
+	vector<int> result;
+
+	while (getline(hotel_information, line)) {
+		stringstream ss(line);
+		result.push_back(stoi(line));
+
+	}
+
+	return result;
 }
