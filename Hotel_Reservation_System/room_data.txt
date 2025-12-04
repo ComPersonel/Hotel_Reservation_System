@@ -107,7 +107,7 @@
 2;7;0;single;basic;10;
 2;8;0;single;basic;20;
 2;9;0;single;basic;0;
-2;10;0;single;basic;0;
+2;10;1;single;basic;0;
 2;11;0;single;basic;10;
 2;12;0;single;basic;10;
 2;13;0;single;basic;0;
@@ -142,7 +142,7 @@
 2;42;0;double;premium;10;
 2;43;0;double;premium;0;
 2;44;0;double;premium;0;
-2;45;0;double;premium;10;
+2;45;1;double;premium;10;
 2;46;0;double;premium;0;
 2;47;0;double;premium;20;
 2;48;0;double;premium;10;
