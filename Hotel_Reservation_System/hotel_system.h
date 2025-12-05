@@ -33,6 +33,10 @@ struct reservation_data {
 	int stay; // Keston pituus
 };
 
+// Main
+void menu(vector<vector<room_data>>&, vector<reservation_data>&);
+void dev_menu(vector<vector<room_data>>&, vector<reservation_data>&);
+
 // File Manager funktiot
 void check_files();
 void load_room_data(vector<vector<room_data>>&);

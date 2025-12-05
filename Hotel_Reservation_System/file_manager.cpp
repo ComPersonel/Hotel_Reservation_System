@@ -7,13 +7,27 @@
 * Tallentaa p‰ivitetyt datat uudestaan, jotta niit‰ voidaan yh‰ k‰ytt‰‰
 */
 
-
 # include "hotel_system.h"
-
-using namespace std;
 
 // Tarkista onko huone data olemassa ---------------------------------------------------
 void check_files() {
+
+	ifstream hotel_information("hotel_information.txt");
+	ifstream room_data("room_data.txt");
+
+	if (hotel_information.good()) {
+		cout << "toimi";
+	}
+	else {
+		cout << "ei";
+	}
+
+	if (room_data.good()) {
+		cout << "toimi";
+	}
+	else {
+		cout << "ei";
+	}
 
 }
 
@@ -117,21 +131,6 @@ void generate_room_data(vector<vector<room_data>>& rooms_array) {
 
 }
 
-vector<int> define_hotel_size() {
-	ifstream hotel_information("hotel_information.txt");
-
-	string line;
-	vector<int> result;
-
-	while (getline(hotel_information, line)) {
-		stringstream ss(line);
-		result.push_back(stoi(line));
-
-	}
-
-	return result;
-}
-
 // Lataa Varaukset ---------------------------------------------------------
 void load_reservation_data(vector<reservation_data>& reservations_array, vector<vector<room_data>>& rooms_array) {
 
@@ -192,4 +191,27 @@ vector<int> define_hotel_size() {
 	}
 
 	return result;
+}
+
+void create_hotel_size_random() {
+
+	ofstream hotel_information("hotel_information.txt", ofstream::out | ofstream::trunc);
+	int random;
+
+	random = random_num(2, 5);
+
+	hotel_information << random << endl;
+	
+	random = random_num(20, 40) * 2;
+
+	hotel_information << random << endl;
+
+}
+
+void create_hotel_size_input(int floor, int number) {
+
+	ofstream hotel_information("hotel_information.txt", ofstream::out | ofstream::trunc);
+
+	hotel_information << floor << endl << number << endl;
+
 }

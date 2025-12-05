@@ -6,25 +6,40 @@
 
 using namespace std;
 
-void dev_menu(vector<vector<room_data>>&);
-
-// Valikko ---------------------------------------------------------
+// Main Funktio ----------------------------------------------------
 int main() {
+
 	srand(time(0)); // Generoi random siemen
 	cout << fixed << setprecision(2);
 	setlocale(LC_ALL, "FI_fi"); // Aseta Ääkköset oikein näkymiin
 
 	// Alusta muuttuujat
 	vector<int> hotel = define_hotel_size();
-	int command;
 
 	vector<vector<room_data>> rooms_array(hotel[0], vector<room_data>(hotel[1]));
 	vector<reservation_data> reservations_array;
 
+	check_files();
+
 	load_room_data(rooms_array);
 	load_reservation_data(reservations_array, rooms_array);
 
-	cout << "suc";
+	menu(rooms_array, reservations_array);
+
+	save_room_data(rooms_array);
+
+	if (!reservations_array.empty()) {
+		save_reservation_data(reservations_array);
+	}
+
+	return 0;
+}
+
+// Valikko ---------------------------------------------------------
+void menu(vector<vector<room_data>>& rooms_array, vector<reservation_data>& reservations_array) {
+
+	// Alusta muuttuujat
+	int command;
 
 	do { // Pyydä tehtävä Numeroa
 		system("cls");
@@ -55,25 +70,18 @@ int main() {
 
 		case 0: cout << "Suljetaan Ohjelma";  break;
 
-		case 420: dev_menu(rooms_array);  break;
+		case 420: dev_menu(rooms_array, reservations_array);  break;
 
 		default: cout << "Virhetilanne";
 		}
 
 	} while (command != 0);
 
-	save_room_data(rooms_array);
-
-	if (!reservations_array.empty()) {
-		save_reservation_data(reservations_array);
-	}
-
-	return 0;
 }
 
 
 // Dev Valikko ---------------------------------------------------------
-void dev_menu(vector<vector<room_data>>& rooms_array) {
+void dev_menu(vector<vector<room_data>>& rooms_array, vector<reservation_data>& reservation_data) {
 
 	// Alusta muuttuujat
 	int command;
@@ -88,6 +96,7 @@ void dev_menu(vector<vector<room_data>>& rooms_array) {
 		cout << "[2] : Arvo Kuponkeja" << "\t|" << endl;
 		cout << "[0] : sulje ohjelma" << "\t|" << endl;
 		cout << "--------------------------" << endl;
+		cout << "OSA KOMENNOISTA POISTAA DATAA" << endl;
 		cout << "Syötä toiminto >> ";
 
 		if (!(cin >> command)) {
