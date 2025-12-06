@@ -65,9 +65,9 @@
 1;31;0;double;premium;10;
 1;32;0;double;premium;0;
 1;33;0;double;premium;0;
-1;34;0;double;deluxe;0;
+1;34;1;double;deluxe;0;
 2;1;0;single;basic;0;
-2;2;0;single;basic;10;
+2;2;1;single;basic;10;
 2;3;0;single;basic;20;
 2;4;0;single;basic;10;
 2;5;0;single;basic;10;

@@ -1,7 +1,6 @@
 // Eetu Parén
 
 // Harjoitustyö - Hotellivaraus systeemi
-
 # include "hotel_system.h"
 
 using namespace std;
@@ -12,10 +11,9 @@ int main() {
 	srand(time(0)); // Generoi random siemen
 	cout << fixed << setprecision(2);
 
-	setlocale(LC_ALL, "FI_fi"); // Aseta Ääkköset oikein näkymiin
+	setlocale(LC_ALL, "FI_fi");
 
 	// Alusta muuttuujat
-
 	check_hotel();
 
 	vector<int> hotel = define_hotel_size();
