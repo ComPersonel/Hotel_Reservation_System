@@ -15,12 +15,16 @@ int main() {
 	setlocale(LC_ALL, "FI_fi"); // Aseta Ääkköset oikein näkymiin
 
 	// Alusta muuttuujat
+
+	check_hotel();
+
 	vector<int> hotel = define_hotel_size();
 
 	vector<vector<room_data>> rooms_array(hotel[0], vector<room_data>(hotel[1]));
 	vector<reservation_data> reservations_array;
 
-	check_files();
+	check_rooms(rooms_array);
+	check_reservations();
 
 	load_room_data(rooms_array);
 	load_reservation_data(reservations_array, rooms_array);
@@ -113,7 +117,7 @@ void dev_menu(vector<vector<room_data>>& rooms_array, vector<reservation_data>& 
 		switch (command) {
 		case 1: generate_room_data(rooms_array);  break;
 		case 2: clear_reservations(rooms_array, reservations_array);  break;
-		case 3: uusi_hotelli(rooms_array, reservations_array);  break;
+		case 3: uusi_hotelli();  break;
 
 		case 0: cout << "Suljetaan Ohjelma";  break;
 

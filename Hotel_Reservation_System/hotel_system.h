@@ -39,7 +39,9 @@ void menu(vector<vector<room_data>>&, vector<reservation_data>&);
 void dev_menu(vector<vector<room_data>>&, vector<reservation_data>&);
 
 // File Manager funktiot
-void check_files();
+void check_hotel();
+void check_rooms(vector<vector<room_data>>&);
+void check_reservations();
 void load_room_data(vector<vector<room_data>>&);
 void save_room_data(vector<vector<room_data>>);
 void generate_room_data(vector<vector<room_data>>&);
@@ -84,4 +86,4 @@ int peru_varaus(vector<vector<room_data>>&, vector<reservation_data>&, reservati
 void muokkaa_nimi(vector<reservation_data>&, reservation_data);
 void muokkaa_kesto(vector<reservation_data>&, reservation_data);
 void muokkaa_huone(vector<vector<room_data>>&, vector<reservation_data>&, reservation_data);
-void uusi_hotelli(vector<vector<room_data>>&, vector<reservation_data>&);
+void uusi_hotelli();

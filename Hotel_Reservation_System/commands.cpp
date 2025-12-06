@@ -496,7 +496,7 @@ void muokkaa_huone(vector<vector<room_data>>& rooms_array, vector<reservation_da
 
 }
 
-void uusi_hotelli(vector<vector<room_data>>& rooms_array, vector<reservation_data>& reservations_array) {
+void uusi_hotelli() {
 
 	system("cls");
 
@@ -530,17 +530,10 @@ void uusi_hotelli(vector<vector<room_data>>& rooms_array, vector<reservation_dat
 
 	vector<vector<room_data>> new_hotel(hotel[0], vector<room_data>(hotel[1]));
 
-	clear_reservations(rooms_array, reservations_array);
 	generate_room_data(new_hotel);
 
 	save_room_data(new_hotel);
-
-	if (!reservations_array.empty()) {
-		save_reservation_data(reservations_array);
-	}
-	else {
-		empty_reservation_data();
-	}
+	empty_reservation_data();
 
 	cout << "Ohjelma sulkeutuu tämän jälkeen";
 	enter();

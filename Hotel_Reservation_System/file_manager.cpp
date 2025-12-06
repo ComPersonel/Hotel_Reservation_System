@@ -10,23 +10,48 @@
 # include "hotel_system.h"
 
 // Tarkista onko huone data olemassa ---------------------------------------------------
-void check_files() {
+void check_hotel() {
 
-	ifstream hotel_information("hotel_information.txt");
+	ifstream hotel_data("hotel_data.txt");
+
+	if (!hotel_data.good()) {
+
+		cout << "Hotelli Data tiedosto puuttuu." << endl;
+		cout << "Joudut luomaan uuden hotelli datan." << endl;
+
+		enter();
+
+		uusi_hotelli();
+	}
+
+}
+
+void check_rooms(vector<vector<room_data>>& rooms_array) {
+
 	ifstream room_data("room_data.txt");
 
-	if (hotel_information.good()) {
-		cout << "toimi";
-	}
-	else {
-		cout << "ei";
+	if (!room_data.good()) {
+
+		cout << "Huone Data puuttuu." << endl;
+		cout << "Uuden hotelli datan luominen poistaa vanhojen huoneiden tiedot." << endl;
+
+		enter();
+
+		generate_room_data(rooms_array);
 	}
 
-	if (room_data.good()) {
-		cout << "toimi";
-	}
-	else {
-		cout << "ei";
+}
+
+void check_reservations() {
+
+	ifstream reservation_data("reservation_data.txt");
+
+	if (!reservation_data.good()) {
+
+		cout << "Varaus Data puuttuu." << endl;
+		cout << "Vanhoja varauksia ei voi hakea." << endl;
+
+		enter();
 	}
 
 }
@@ -179,12 +204,12 @@ void save_reservation_data(vector<reservation_data> reservations_array) {
 }
 
 vector<int> define_hotel_size() {
-	ifstream hotel_information("hotel_information.txt");
+	ifstream hotel_data("hotel_data.txt");
 
 	string line;
 	vector<int> result;
 
-	while (getline(hotel_information, line)) {
+	while (getline(hotel_data, line)) {
 		stringstream ss(line);
 		result.push_back(stoi(line));
 
@@ -195,24 +220,24 @@ vector<int> define_hotel_size() {
 
 void create_hotel_size_random() {
 
-	ofstream hotel_information("hotel_information.txt", ofstream::out | ofstream::trunc);
+	ofstream hotel_data("hotel_data.txt", ofstream::out | ofstream::trunc);
 	int random;
 
 	random = random_num(2, 5);
 
-	hotel_information << random << endl;
+	hotel_data << random << endl;
 	
 	random = random_num(10, 40) * 2;
 
-	hotel_information << random << endl;
+	hotel_data << random << endl;
 
 }
 
 void create_hotel_size_input(int floor, int number) {
 
-	ofstream hotel_information("hotel_information.txt", ofstream::out | ofstream::trunc);
+	ofstream hotel_data("hotel_data.txt", ofstream::out | ofstream::trunc);
 
-	hotel_information << floor << endl << number << endl;
+	hotel_data << floor << endl << number << endl;
 
 }
 

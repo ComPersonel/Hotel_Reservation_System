@@ -34,22 +34,13 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="room_data_template.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="reservation_data_template.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="hotel_information_template.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
     <Text Include="room_data.txt">
       <Filter>Resource Files</Filter>
     </Text>
     <Text Include="reservation_data.txt">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="hotel_information.txt">
+    <Text Include="hotel_data.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>

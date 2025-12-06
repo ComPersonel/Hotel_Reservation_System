@@ -132,12 +132,9 @@
     <ClCompile Include="tasks.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="hotel_information.txt" />
-    <Text Include="hotel_information_template.txt" />
+    <Text Include="hotel_data.txt" />
     <Text Include="reservation_data.txt" />
-    <Text Include="reservation_data_template.txt" />
     <Text Include="room_data.txt" />
-    <Text Include="room_data_template.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
