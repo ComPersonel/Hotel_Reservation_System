@@ -128,7 +128,7 @@
   <ItemGroup>
     <ClCompile Include="commands.cpp" />
     <ClCompile Include="file_manager.cpp" />
-    <ClCompile Include="menu.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="tasks.cpp" />
   </ItemGroup>
   <ItemGroup>
