@@ -495,3 +495,54 @@ void muokkaa_huone(vector<vector<room_data>>& rooms_array, vector<reservation_da
 	enter();
 
 }
+
+void uusi_hotelli(vector<vector<room_data>>& rooms_array, vector<reservation_data>& reservations_array) {
+
+	system("cls");
+
+	cout << "Luo uusi hotelli! TÄMÄ POISTAA KAIKKI TIEDOT" << endl;
+
+	vector<int> hotel_plan = { -1, -1,};
+
+	cout << "Haluatko itse luoda uuden hotelli datan? (Y/N) >> ";
+
+	if (yes_no() == true) {
+		cout << "Montako kerrosta uudessa hotelissa on? (1-10) >> ";
+
+		hotel_plan[0] = input_int(1, 10);
+
+		cout << "Montako huonetta uudessa hotelissa on? syötä parillinen määrä (20-80) >> ";
+
+		while (!(cin >> hotel_plan[1]) || hotel_plan[1] < 20 || hotel_plan[1] > 80 || hotel_plan[1] % 2 != 0) {
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			cout << "Huono syöte, yritä uudelleen. >> ";
+		}
+
+		create_hotel_size_input(hotel_plan[0], hotel_plan[1]);
+
+	}
+	else {
+		create_hotel_size_random();
+	}
+
+	vector<int> hotel = define_hotel_size();
+
+	vector<vector<room_data>> new_hotel(hotel[0], vector<room_data>(hotel[1]));
+
+	clear_reservations(rooms_array, reservations_array);
+	generate_room_data(new_hotel);
+
+	save_room_data(new_hotel);
+
+	if (!reservations_array.empty()) {
+		save_reservation_data(reservations_array);
+	}
+	else {
+		empty_reservation_data();
+	}
+
+	cout << "Ohjelma sulkeutuu tämän jälkeen";
+	enter();
+	exit(0);
+}

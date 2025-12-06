@@ -10,6 +10,7 @@
 # include <vector>
 # include <iomanip>
 # include <limits>
+# include <locale>
 
 using namespace std;
 
@@ -45,6 +46,9 @@ void generate_room_data(vector<vector<room_data>>&);
 void load_reservation_data(vector<reservation_data>&, vector<vector<room_data>>&);
 void save_reservation_data(vector<reservation_data>);
 vector<int> define_hotel_size();
+void empty_reservation_data();
+void create_hotel_size_random();
+void create_hotel_size_input( int, int);
 
 // Tasks funktiot
 int random_num(int, int);
@@ -68,6 +72,7 @@ void print_bill(room_data, reservation_data);
 double print_cost(room_data, reservation_data);
 vector<reservation_data> find_by_name(vector<reservation_data>, std::string);
 vector<reservation_data> find_by_reservation(vector<reservation_data>, int);
+void clear_reservations(vector<vector<room_data>>&, vector<reservation_data>&);
 
 // Komento funktiot
 void varaa_huone(vector<vector<room_data>>&, vector<reservation_data>&);
@@ -79,3 +84,4 @@ int peru_varaus(vector<vector<room_data>>&, vector<reservation_data>&, reservati
 void muokkaa_nimi(vector<reservation_data>&, reservation_data);
 void muokkaa_kesto(vector<reservation_data>&, reservation_data);
 void muokkaa_huone(vector<vector<room_data>>&, vector<reservation_data>&, reservation_data);
+void uusi_hotelli(vector<vector<room_data>>&, vector<reservation_data>&);

@@ -11,6 +11,7 @@ int main() {
 
 	srand(time(0)); // Generoi random siemen
 	cout << fixed << setprecision(2);
+
 	setlocale(LC_ALL, "FI_fi"); // Aseta Ääkköset oikein näkymiin
 
 	// Alusta muuttuujat
@@ -31,6 +32,9 @@ int main() {
 	if (!reservations_array.empty()) {
 		save_reservation_data(reservations_array);
 	}
+	else {
+		empty_reservation_data();
+	}
 
 	return 0;
 }
@@ -45,13 +49,13 @@ void menu(vector<vector<room_data>>& rooms_array, vector<reservation_data>& rese
 		system("cls");
 
 		cout << "--------------------------" << endl;
-		cout << "Tehtävät : " << "\t\t|" << endl;
-		cout << "[1] : Varaa Huone" << "\t|" << endl;
-		cout << "[2] : Tulosta Varaus" << "\t|" << endl;
-		cout << "[3] : Etsi Varaus" << "\t|" << endl;
-		cout << "[4] : Muokkaa Varaus" << "\t|" << endl;
-		cout << "[5] : Kaikki Varaukset" << "\t|" << endl;
-		cout << "[0] : sulje ohjelma" << "\t|" << endl;
+		cout << left << setw(25) << "Tehtävät : " << "|" << endl;
+		cout << left << setw(25) << "[1] : Varaa Huone" << "|" << endl;
+		cout << left << setw(25) << "[2] : Tulosta Varaus" << "|" << endl;
+		cout << left << setw(25) << "[3] : Etsi Varaus" << "|" << endl;
+		cout << left << setw(25) << "[4] : Muokkaa Varaus" << "|" << endl;
+		cout << left << setw(25) << "[5] : Kaikki Varaukset" << "|" << endl;
+		cout << left << setw(25) << "[0] : sulje ohjelma" << "|" << endl;
 		cout << "--------------------------" << endl;
 		cout << "Syötä toiminto >> ";
 
@@ -81,7 +85,7 @@ void menu(vector<vector<room_data>>& rooms_array, vector<reservation_data>& rese
 
 
 // Dev Valikko ---------------------------------------------------------
-void dev_menu(vector<vector<room_data>>& rooms_array, vector<reservation_data>& reservation_data) {
+void dev_menu(vector<vector<room_data>>& rooms_array, vector<reservation_data>& reservations_array) {
 
 	// Alusta muuttuujat
 	int command;
@@ -91,12 +95,13 @@ void dev_menu(vector<vector<room_data>>& rooms_array, vector<reservation_data>& 
 		system("cls");
 
 		cout << "--------------------------" << endl;
-		cout << "Developer Menu" << "\t\t|" << endl;
-		cout << "[1] : Luo Huoonedata" << "\t|" << endl;
-		cout << "[2] : Arvo Kuponkeja" << "\t|" << endl;
-		cout << "[0] : sulje ohjelma" << "\t|" << endl;
+		cout << left << setw(25) << "Developer Menu" << "|" << endl;
+		cout << left << setw(25) << "[1] : Luo Huoonedata" << "|" << endl;
+		cout << left << setw(25) << "[2] : Poista varaukset" << "|" << endl;
+		cout << left << setw(25) << "[3] : Luo uusi hotelli" << "|" << endl;
+		cout << left << setw(25) << "[0] : sulje ohjelma" << "|" << endl;
 		cout << "--------------------------" << endl;
-		cout << "OSA KOMENNOISTA POISTAA DATAA" << endl;
+		cout << "OSA KOMENNOISTA POISTAA DATAA TAI VAATII OHJELMAN UUDELLEEN KÄYNISTYKSEN" << endl;
 		cout << "Syötä toiminto >> ";
 
 		if (!(cin >> command)) {
@@ -107,7 +112,8 @@ void dev_menu(vector<vector<room_data>>& rooms_array, vector<reservation_data>& 
 
 		switch (command) {
 		case 1: generate_room_data(rooms_array);  break;
-		case 2: cout << "2";  break;
+		case 2: clear_reservations(rooms_array, reservations_array);  break;
+		case 3: uusi_hotelli(rooms_array, reservations_array);  break;
 
 		case 0: cout << "Suljetaan Ohjelma";  break;
 

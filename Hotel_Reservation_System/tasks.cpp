@@ -52,7 +52,7 @@ string input_name() {
 
 	string name = "<Undefined User>";
 
-	while (!getline(cin, name)) {
+	while (!getline(cin, name) || name.empty() || all_of(name.begin(), name.end(), [](unsigned char c) { return isspace(c); })) {
 		cin.clear();
 		cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		cout << "Huono syöte, yritä uudelleen. >> ";
@@ -83,15 +83,15 @@ string tier_desc(room_data room) {
 }
 
 void print_room(room_data room) {
-	cout << "Huone numero \t\t: " << output_room_number(room.floor, room.number) << endl;
-	cout << "Huone malli \t\t: " << type_desc(room) << endl;
-	cout << "Huone taso \t\t: " << tier_desc(room) << endl;
+	cout << left << setw(25) << "Huone numero" << ":" << output_room_number(room.floor, room.number) << endl;
+	cout << left << setw(25) << "Huone malli" << ":" << type_desc(room) << endl;
+	cout << left << setw(25) << "Huone taso" << ":" << tier_desc(room) << endl;
 }
 
 void print_reservation(reservation_data reservation) {
-	cout << "Varaus numero \t\t: " << reservation.reservation << endl;
-	cout << "Varaajan nimi \t\t: " << reservation.name << endl;
-	cout << "Varauksen kesto \t: " << reservation.stay << " päivää" << endl;
+	cout << left << setw(25) << "Varaus numero" << ":" << reservation.reservation << endl;
+	cout << left << setw(25) << "Varaajan nimi" << ":" << reservation.name << endl;
+	cout << left << setw(25) << "Varauksen kesto" << ":" << reservation.stay << " päivää" << endl;
 }
 
 bool any_free_rooms(vector<vector<room_data>> rooms_array) {
@@ -243,12 +243,12 @@ void print_bill(room_data room, reservation_data reservation) {
 		cost_multiplier = 2.0;
 	}
 
-	cout << "Huoneen pohja hinta \t: " << base_cost << " Euroa" << endl;
-	cout << "Huoneen lisä hinta \t: " << base_cost * (cost_multiplier - 1.0) << " Euroa" << endl;
-	cout << "Varauksen kesto \t: " << reservation.stay << " Päivää" << endl;
-	cout << "Huone alennus \t\t: " << room.coupon << "%" << endl;
+	cout << left << setw(25) << "Huoneen pohja hinta" << ":" << base_cost << " Euroa" << endl;
+	cout << left << setw(25) << "Huoneen lisä hinta" << ":" << base_cost * (cost_multiplier - 1.0) << " Euroa" << endl;
+	cout << left << setw(25) << "Varauksen kesto" << ":" << reservation.stay << " Päivää" << endl;
+	cout << left << setw(25) << "Huone alennus" << ":" << room.coupon << "%" << endl;
 
-	cout << "Kokonaishinta \t\t: " << print_cost(room, reservation) << " Euroa" << endl;;
+	cout << left << setw(25) << "Kokonaishinta" << ":" << print_cost(room, reservation) << " Euroa" << endl;;
 }
 
 double print_cost(room_data room, reservation_data reservation) {
@@ -289,4 +289,23 @@ vector<reservation_data> find_by_reservation(vector<reservation_data> reservatio
 		}
 	}
 	return reservations_list;
+}
+
+void clear_reservations(vector<vector<room_data>>& rooms_array, vector<reservation_data>& reservations_array) {
+
+	int floor, number;
+
+	while (reservations_array.empty() == false) {
+
+		floor = reservations_array[0].room_floor;
+		number = reservations_array[0].room_number;
+
+		rooms_array[floor][number].reserved = false;
+
+		reservations_array.erase(reservations_array.begin());
+
+		empty_reservation_data();
+
+	}
+
 }

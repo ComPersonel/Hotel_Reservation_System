@@ -202,7 +202,7 @@ void create_hotel_size_random() {
 
 	hotel_information << random << endl;
 	
-	random = random_num(20, 40) * 2;
+	random = random_num(10, 40) * 2;
 
 	hotel_information << random << endl;
 
@@ -213,5 +213,11 @@ void create_hotel_size_input(int floor, int number) {
 	ofstream hotel_information("hotel_information.txt", ofstream::out | ofstream::trunc);
 
 	hotel_information << floor << endl << number << endl;
+
+}
+
+void empty_reservation_data() {
+
+	ofstream reservation_data("reservation_data.txt", ofstream::out | ofstream::trunc);
 
 }
