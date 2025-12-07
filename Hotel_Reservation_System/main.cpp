@@ -132,7 +132,7 @@ void dev_menu(vector<vector<room_data>>& rooms_array, vector<reservation_data>& 
 		// Tulostetaan tehtävä vaihtoehdot
 		cout << "--------------------------" << endl;
 		cout << left << setw(25) << "Developer Menu" << "|" << endl;
-		cout << left << setw(25) << "[1] : Luo Huoonedata" << "|" << endl;
+		cout << left << setw(25) << "[1] : Luo Huonedata" << "|" << endl;
 		cout << left << setw(25) << "[2] : Poista varaukset" << "|" << endl;
 		cout << left << setw(25) << "[3] : Luo uusi hotelli" << "|" << endl;
 		cout << left << setw(25) << "[0] : sulje ohjelma" << "|" << endl;
