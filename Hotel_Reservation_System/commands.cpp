@@ -358,7 +358,7 @@ void muokkaa_varaus(vector<vector<room_data>>& rooms_array, vector<reservation_d
 			case 2: muokkaa_huone(rooms_array, reservations_array, reservation); break;
 			case 3: muokkaa_nimi(reservations_array, reservation); break;
 			case 4: muokkaa_kesto(reservations_array, reservation); break;
-			case 0: ; break;
+			case 0: cout << "Poistutaan muokkaamisesta"; break;
 			default: cout << "Virhetilanne";
 			}
 
