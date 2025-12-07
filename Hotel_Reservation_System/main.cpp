@@ -1,6 +1,6 @@
 // Eetu Parén
 
-// Harjoitustyö - Hotellivaraus systeemi - main.cpp
+// Harjoitustyö - Hotellivaraus systeemi - main.cpp - toivottavasti 5p toteutus
 // 
 // Pää ohjelma joka sisältää käyttäjä menun ja dev menun
 //

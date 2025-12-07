@@ -1,6 +1,6 @@
 // Eetu Parén
 
-// Harjoitustyö - Hotellivaraus systeemi - file_manager.cpp
+// Harjoitustyö - Hotellivaraus systeemi - file_manager.cpp - toivottavasti 5p toteutus
 // 
 // Lataa huoneiden datan arrayihin helppoa käsittelyä varten
 // Tallentaa päivitetyt datat uudestaan, jotta niitä voidaan yhä käyttää

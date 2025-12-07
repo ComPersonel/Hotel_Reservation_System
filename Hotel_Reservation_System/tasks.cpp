@@ -1,6 +1,6 @@
 // Eetu Parén
 
-// Harjoitustyö - Hotellivaraus systeemi
+// Harjoitustyö - Hotellivaraus systeemi - tasks.cpp - toivottavasti 5p toteutus
 // 
 // Sisältää satunnaisia pieniä itsenäisiä komentoja jotka suorittavat yhden ja vain ja ainoastaan yhden tehtävän
 //

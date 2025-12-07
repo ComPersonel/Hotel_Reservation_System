@@ -39,7 +39,7 @@
 0;39;0;double;premium;0;
 0;40;0;double;deluxe;10;
 1;1;0;single;basic;10;
-1;2;0;single;basic;0;
+1;2;1;single;basic;0;
 1;3;0;single;basic;10;
 1;4;0;single;basic;10;
 1;5;0;single;basic;10;
