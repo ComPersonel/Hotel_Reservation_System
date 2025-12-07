@@ -37,12 +37,12 @@ struct room_data {
 // name			= Varaajan käyttäjänimi
 // stay			= Kuinka monta päivää huone on varattu
 struct reservation_data {
-	int index;
-	int reservation;
-	int room_floor;
-	int room_number;
-	std::string name;
-	int stay;
+	int index = -1;
+	int reservation = -1;
+	int room_floor = -1;
+	int room_number = -1;
+	std::string name = "<Undefined User>";
+	int stay = 1;
 };
 
 // Main.cpp functiot

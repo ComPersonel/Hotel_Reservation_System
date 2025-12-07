@@ -1,9 +1,12 @@
 // Eetu Parén
 
-// Harjoitustyö - Hotellivaraus systeemi
-# include "hotel_system.h"
+// Harjoitustyö - Hotellivaraus systeemi - main.cpp
+// 
+// Pää ohjelma joka sisältää käyttäjä menun ja dev menun
+//
 
-using namespace std;
+// hotel_system.h sisältää kaikki namespacet, included, structit ja functiot
+# include "hotel_system.h"
 
 // Main Function ------------------------------------------------------------------------------------
 // Luo pohja datan ja tarkastaa tiedostojen tilan
@@ -13,8 +16,8 @@ using namespace std;
 int main() {
 
 	// Luo satunnaisten numeroiden siemenen
-	// Asettaa couttiin kahden desimaalin tuloste
-	// Asettaa Suomalaisen localen
+	// Asettaa couttiin kahden desimaalin tuloste takkuuden
+	// Asettaa Suomalaisen localen ääkkösiä varten
 	srand(time(0));
 	cout << fixed << setprecision(2);
 	setlocale(LC_ALL, "FI_fi");
@@ -24,7 +27,7 @@ int main() {
 	check_hotel();
 
 	// Tallentaa hotellin kerros ja huone määrä vectoriin, jotta sitä voidaan käyttää muussa ohjelmassa
-	// Luodaan 2d vectori taulukkoon muotoa[kerros][numero] käyttäen hotellin kokoa pohjana
+	// Luodaan 2d vectori taulukkoon indexinä muotoa [kerros][numero] käyttäen hotellin kokoa pohjana
 	// Luodaan vectori taulukko johon säilötään varaukset
 	vector<int> hotel = define_hotel_size();
 	vector<vector<room_data>> rooms_array(hotel[0], vector<room_data>(hotel[1]));
@@ -104,13 +107,13 @@ void menu(vector<vector<room_data>>& rooms_array, vector<reservation_data>& rese
 		// 420 Erikois tila jossa avataan Dev menu
 		case 420: dev_menu(rooms_array, reservations_array);  break;
 
+		// Virhetilanne Tulostus
 		default: cout << "Virhetilanne";
 		}
 
 	} while (command != 0);
 
 }
-
 
 // Dev Valikko -------------------------------------------------------------------------------
 // Avataan Dev valikko jossa käyttäjä voi vaikuttaa tiedostojen sisältöön, mutta voi aiheuttaa ongelmia
@@ -154,6 +157,7 @@ void dev_menu(vector<vector<room_data>>& rooms_array, vector<reservation_data>& 
 		// 0 Erikois tila jossa vain tulostetaan viesti ja poistutaan ohjelmasta
 		case 0: cout << "Suljetaan Ohjelma";  break;
 
+		// Virhetilanne Tulostus
 		default: cout << "Virhetilanne";
 		}
 
