@@ -1,4 +1,4 @@
-<img width="148" height="168" alt="image" src="https://github.com/user-attachments/assets/0646e489-a175-47ea-b220-edc0f4519798" /> 
+<img width="148" height="168" alt="image" src="https://github.com/user-attachments/assets/9fc98035-a507-49e2-8c9a-b24b78de9743" />
 
 # Eetu Parén, 25TietoB
 
